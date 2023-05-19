@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/StarrySky2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+  <!--pronto per il tuo primo decollo-->
+  <TextView
+      android:id="@+id/text_register"
+      android:layout_width="300dp"
+      android:layout_height="100dp"
+      android:layout_marginTop="136dp"
+      android:fontFamily="@font/aclonica"
+      android:gravity="center_horizontal|center_vertical"
+      android:text="@string/primo_decollo"
+      android:textAlignment="center"
+      android:textColor="@color/lightorange"
+      android:textSize="30sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.495"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <!--email-->
+
+  <!--userid-->
+
+  <!--password-->
+
+  <EditText
+      android:id="@+id/user"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="368dp"
+      android:fontFamily="@font/aclonica"
+      android:hint="@string/user_id"
+      android:inputType="text"
+      android:selectAllOnFocus="true"
+      android:textColor="@color/lightorange"
+      android:textColorHint="@color/lightorange"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.504"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/email"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="308dp"
+      android:fontFamily="@font/aclonica"
+      android:hint="@string/prompt_email"
+      android:inputType="textEmailAddress"
+      android:selectAllOnFocus="true"
+      android:textColor="@color/lightorange"
+      android:textColorHint="@color/lightorange"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.504"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/pass"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="428dp"
+      android:fontFamily="@font/aclonica"
+      android:hint="@string/prompt_password"
+      android:inputType="textPassword"
+      android:selectAllOnFocus="true"
+      android:textColor="@color/lightorange"
+      android:textColorHint="@color/lightorange"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.504"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+
+  <!--pulsante ci siamo!-->
+
+  <Button
+      android:id="@+id/login"
+      android:layout_width="159dp"
+      android:layout_height="66dp"
+      android:layout_gravity="start"
+      android:layout_marginBottom="136dp"
+      android:background=""
+      android:enabled="false"
+      android:fontFamily="@font/aclonica"
+      android:text="@string/done"
+      android:textSize="20dp"
+      android:textColor="@color/lightorange"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:background="@drawable/StarrySky2"
+    tools:context=".HomeGameActivity"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/StarrySky2" />
+
+    <!--la stazione spaziale ti dà il benvenuto!-->
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/welcome"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/lightorange"
+        android:textSize="26dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--Play-->
+
+
+    <!--Setting-->
+
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:contentDescription="@string/button_play"
+        android:scaleType="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:srcCompat="@drawable/play3" />
+
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:contentDescription="@string/button_setting"
+        android:scaleType="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50"
+        app:srcCompat="@drawable/setting1"/>
+
+    <!--Score-->
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:contentDescription="@string/button_score"
+        android:scaleType="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.650"
+        app:srcCompat="@drawable/score1"
+        />
+
+    <!--exit-->
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:contentDescription="@string/button_exit"
+        android:scaleType="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.80"
+        app:srcCompat="@drawable/exit1"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

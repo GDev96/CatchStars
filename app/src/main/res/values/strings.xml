@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">CatchStars</string>
+    <string name="button_play">Play</string>
+    <string name="button_send">Send</string>
+    <string name="button_catch">Catch</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Entra nella stazione spaziale</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">La stazione spaziale ti dà il benvenuto</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="Ehila">Ehilà astronauta!</string>
+    <string name="Catch">Catch!</string>
+    <string name="register">Primo volo? Registrati!</string>
+    <string name="insert_code">Inserisci i tuoi codici di lancio!</string>
+    <string name="primo_decollo">Pronto per il tuo primo decollo?</string>
+    <string name="done">Ci siamo!</string>
+    <string name="user_id">Username</string>
+    <string name="choose">Cosa vuoi fare?</string>
+    <string name="button_setting">setting</string>
+    <string name="button_score">score</string>
+    <string name="button_exit">exit</string>
+    <string name="setting">Imposta i tuoi parametri di lancio!</string>
+    <string name="sound">Sound</string>
+    <string name="music">Music</string>
+    <string name="score">Esiti di lancio</string>
+    <string name="good_luck">Missione iniziata! Buona fortuna astronauta!</string>
+    <string name="title_activity_login2">LoginActivity2</string>
+
+</resources>
