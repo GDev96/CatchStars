@@ -71,20 +71,11 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
-    <!-- tasto catch-->
 
-
-    <!-- progress bar in centesimi-->
     <!-- inserire una pop up window di livello completato al compleatamento della progress bar-->
 
 
-    <!-- setting button-->
-
-
-    <!-- home button-->
-
-    <!-- retry button-->
-
+    <!-- tasto catch-->
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -97,6 +88,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/medium_base" />
 
+    <!-- progress bar in centesimi-->
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="200dp"
@@ -108,7 +100,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- homegame button-->
     <ImageButton
+        android:id="@+id/home_back"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="550dp"
@@ -122,7 +116,9 @@
         app:layout_constraintVertical_bias="0.197"
         app:srcCompat="@drawable/home" />
 
+    <!--pulsante retry che fa tornare alla home game -->
     <ImageButton
+        android:id="@+id/retry_level"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="550dp"
@@ -136,6 +132,7 @@
         app:layout_constraintVertical_bias="0.197"
         app:srcCompat="@drawable/small_base" />
 
+    <!-- setting button-->
     <ImageButton
         android:id="@+id/setting"
         android:layout_width="100dp"
