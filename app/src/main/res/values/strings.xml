@@ -28,6 +28,7 @@
     <string name="music">Music</string>
     <string name="score">Esiti di lancio</string>
     <string name="good_luck">Missione iniziata! Buona fortuna astronauta!</string>
-    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="astronaut"> Astronaut: </string>
+
 
 </resources>

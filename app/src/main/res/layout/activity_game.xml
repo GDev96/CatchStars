@@ -78,15 +78,16 @@
     <!-- tasto catch-->
     <ImageButton
         android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="496dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="485dp"
         android:background="@null"
         android:scaleType="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/medium_base" />
+        app:srcCompat="@drawable/catch1"
+         />
 
     <!-- progress bar in centesimi-->
     <ProgressBar
@@ -130,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.197"
-        app:srcCompat="@drawable/small_base" />
+        app:srcCompat="@drawable/retry" />
 
     <!-- setting button-->
     <ImageButton
