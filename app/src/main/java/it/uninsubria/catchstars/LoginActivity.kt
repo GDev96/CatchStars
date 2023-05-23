@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity(intent: Intent) : AppCompatActivity() {
 
     private lateinit var insertEmail: EditText
     private lateinit var insertPass: EditText
@@ -24,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.login)
 
         //collegamento a firebase
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         //associazione oggetti layout
         insertEmail = findViewById(R.id.username)
@@ -32,36 +34,24 @@ class LoginActivity : AppCompatActivity() {
         LogInButton = findViewById(R.id.login)
         SignInButton = findViewById(R.id.register)
 
-        LogInButton.setOnClickListener{
-            //to do: controllo credenziali e accesso
+        LogInButton.setOnClickListener {
+
             val email = insertEmail.text.toString()
             val password = insertPass.text.toString()
 
-
-
-            //Toast.maketext permette di creare un popup con testo
-
-
-            //chiamata metodo per il passaggio a HomeGame
-            goHomeGame()
+            //controllo credenziali e accesso alla schermata HomeGame
+            auth = FirebaseAuth.getInstance()
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task: Task<AuthResult> ->
+                    val intentToMain = Intent(this@LoginActivity, HomeGameActivity::class.java)
+                    startActivity(intentToMain)
+                }
         }
 
-        SignInButton.setOnClickListener{
-            //passaggio alla schermata SignIn
-            goSignUp()
+        //passaggio alla schermata SignIn
+        SignInButton.setOnClickListener {
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+            startActivity(intent)
         }
-
     }
-
-    //metodo per il passaggio alla schermata home del gioco
-    fun goHomeGame(){
-        val intent = Intent(this@LoginActivity, HomeGameActivity::class.java)
-        HomeGameActivity(intent)
-    }
-
-    fun goSignUp(){
-        val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
-        SignUpActivity(intent)
-    }
-
 }
