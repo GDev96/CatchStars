@@ -42,6 +42,7 @@
         android:layout_height="150dp"
         android:background="@null"
         android:scaleType="@null"
+        android:onClick="VolumeOn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -58,6 +59,7 @@
         android:layout_height="150dp"
         android:background="@null"
         android:scaleType="@null"
+        android:onClick="VolumeOff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
@@ -69,11 +71,12 @@
 
     <!--pulsante attivazione musica-->
     <ImageButton
-        android:id="@+id/musiceOn_button"
+        android:id="@+id/musicOn_button"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@null"
         android:scaleType="@null"
+        android:onClick="MusicOn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -90,6 +93,7 @@
         android:layout_height="150dp"
         android:background="@null"
         android:scaleType="@null"
+        android:onClick="MusicOff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
@@ -149,11 +153,11 @@
 
     <!--pulsante informazioni-->
     <ImageButton
-        android:id="@+id/back_button"
+        android:id="@+id/info_button"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@null"
-        android:onClick="goHomeGamePage"
+        android:onClick="PopUpAbout"
         android:scaleType="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

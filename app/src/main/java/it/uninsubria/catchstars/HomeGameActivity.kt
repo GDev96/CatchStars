@@ -44,18 +44,17 @@ class HomeGameActivity(intent: Intent) : AppCompatActivity() {
 
         //exitbutton -> logout firebase e ritorno a schermata di avvio
         LogOutButton.setOnClickListener{
+            //creazione pop up(?) "sei sicuro di voler uscire?" due pulsanti:
+            //exit -> mainactivity,
+            //back -> homegameactivity
+
             //logout firebase
             Firebase.auth.signOut()
-            //creazione pop up(?) "sei sicuro di voler uscire?" due pulsanti: exit -> mainactivity, back -> homegameactivity
+
             val intent = Intent(this@HomeGameActivity, MainActivity::class.java)
             startActivity(intent)
         }
-
-
-
     }
-
-
 }
 
 
