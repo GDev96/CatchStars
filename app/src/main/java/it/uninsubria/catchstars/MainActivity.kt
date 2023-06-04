@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         startImageButton.setOnClickListener{
             goLoginPage()
         }
+
+        //todo creazione e avvio service musica in sottofondo e suoni
     }
 
     //metodo per il passaggio alla schermata di Login

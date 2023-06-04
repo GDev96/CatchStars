@@ -31,49 +31,43 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
 
         //tasti volume -> gestione suoni tasti
         VolOnButton.setOnClickListener{
-            //attivazione servizio suoni tasti
+            //todo attivazione servizio suoni tasti
         }
 
         VolOffButton.setOnClickListener{
-            //interruzione service suoni tasti
+            //todo interruzione service suoni tasti
         }
 
         //tasti musica --> gestione musica in sottofondo
         MusicOnButton.setOnClickListener{
-            //attivazione musica in sottofondo
+            //todo attivazione musica in sottofondo
+            //metodo MusicOn?
         }
 
         MusicOffButton.setOnClickListener{
-            //disattivazione musica in sottofondo
+            //todo disattivazione musica in sottofondo
         }
 
         //info --> popup informazioni
         InfoButton.setOnClickListener{
-            Toast.makeText(applicationContext, "Versione 1.0 - Data di rilascio: 06/2023 - Sviluppato da Frattini Gaia MT 736610", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Progetto: CatchStars! - Versione 1.0 - Data di rilascio: 06/2023 - Sviluppato da Frattini Gaia MT 736610", Toast.LENGTH_LONG).show()
         }
 
         //back button
         BackButton.setOnClickListener{
             val intent = Intent(this@SettingActivity, HomeGameActivity::class.java)
+            startActivity(intent)
         }
     }
 
 
 }
-
-
-
-
-
 /*
-metodi:
+nomi metodi layout:
 VolumeOn
 VolumeOff
 MusicOn
 MusicOff
 goHomeGamePage
 PopUpAbout
-
-pulsante info
-apertura pop up: nome progetto,     nome sviluppatore e matricola, data di rilascio, versione
  */
