@@ -29,6 +29,17 @@
     <string name="score">Esiti di lancio</string>
     <string name="good_luck">Missione iniziata! Buona fortuna astronauta!</string>
     <string name="astronaut"> Astronaut: </string>
+    <string name="prompt_confirm">Conferma password</string>
+    <string name="info">Curiosità sulla stazione spaziale!</string>
+    <string name="title">Titolo progetto: CatchStars!</string>
+    <string name="version">Versione: 1.0</string>
+    <string name="date">Data di rilascio: 06/2023</string>
+    <string name="name">Sviluppatore: Frattini Gaia - mt. 736610</string>
+    <string name="question">Hai delle domande?</string>
+    <string name="question_1">1. Quanti punti vale una stella?</string>
+    <string name="answer_1">Ogni stella ha un punteggio diverso assegnato in base al punto di partenza dell\'astronauta, i punteggi sono: 10, 15, 20, 25 e 30 punti</string>
+    <string name="question_2">2. Cosa succede allo scadere del tempo?</string>
+    <string name="answer_2">Quando scade il tempo, il gioco finisce e il punteggio ottenuto viene salvato all\'interno della tabella punteggi</string>
 
 
 </resources>

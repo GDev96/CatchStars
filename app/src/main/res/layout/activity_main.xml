@@ -42,7 +42,7 @@
         android:fontFamily="@font/aclonica"
         android:text="CatchStars!"
         android:textAlignment="center"
-        android:textColor="@color/lightorange"
+        android:textColor="@color/dark_yellow"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

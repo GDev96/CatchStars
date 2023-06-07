@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:background="@drawable/StarrySky2"
+    tools:context=".InfoActivity"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/StarrySky2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <!--Curiosità sulla stazione spaziale -->
+    <TextView
+        android:id="@+id/faq"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/question"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/dark_yellow"
+        android:textSize="26dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+     <TextView
+        android:id="@+id/quest_1"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="200dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/question_1"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/ans_1"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="275dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/answer_1"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/quest_2"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="370dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/question_2"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/ans_2"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="450dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/answer_2"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--Button Back -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:scaleType="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/back" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

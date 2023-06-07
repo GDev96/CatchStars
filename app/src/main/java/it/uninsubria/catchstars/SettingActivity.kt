@@ -15,7 +15,9 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
     private lateinit var MusicOnButton: Button
     private lateinit var MusicOffButton: Button
     private lateinit var InfoButton: Button
+    private lateinit var FAQButton: Button
     private lateinit var BackButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,7 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
         MusicOnButton = findViewById(R.id.musicOn_button)
         MusicOffButton = findViewById(R.id.musicOff_button)
         InfoButton = findViewById(R.id.info_button)
+        FAQButton = findViewById(R.id.faq_button)
         BackButton = findViewById(R.id.back_button)
 
         //tasti volume -> gestione suoni tasti
@@ -48,9 +51,16 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
             //todo disattivazione musica in sottofondo
         }
 
-        //info --> popup informazioni
+        //info
         InfoButton.setOnClickListener{
-            Toast.makeText(applicationContext, "Progetto: CatchStars! - Versione 1.0 - Data di rilascio: 06/2023 - Sviluppato da Frattini Gaia MT 736610", Toast.LENGTH_LONG).show()
+            val intent = Intent( this@SettingActivity, InfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        //FAQ
+        FAQButton.setOnClickListener {
+            val intent = Intent(this@SettingActivity, FAQActivity::class.java)
+            startActivity(intent)
         }
 
         //back button
@@ -60,14 +70,11 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
         }
     }
 
-
 }
 /*
 nomi metodi layout:
 VolumeOn
-VolumeOff
-MusicOn
+VolumeOff --> Volume.kt
+MusicOn --> BackgroundMusic.kt
 MusicOff
-goHomeGamePage
-PopUpAbout
  */

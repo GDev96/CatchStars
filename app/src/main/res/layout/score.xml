@@ -26,7 +26,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/score"
         android:textAlignment="center"
-        android:textColor="@color/lightorange"
+        android:textColor="@color/light_orange"
         android:textSize="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,7 +35,6 @@
 
     <!--tabella punti -->
     <FrameLayout
-        android:id="@+id/tablescore"
         android:layout_width="250dp"
         android:layout_height="400dp"
         android:layout_marginTop="188dp"
@@ -50,37 +49,81 @@
             Colonne: date - time - score
         -->
         <TableLayout
+            android:id="@+id/tablescore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:stretchColumns="3"
-            android:background=""
-            >
-            <TableRow>
+            android:background="@drawable/table_layout"
+            android:stretchColumns="3">
+
+            <TableRow android:background="@drawable/main_row">
+
                 <TextView
-                    android:text="Data"
-                    android:padding="5dp"
                     android:layout_width="84dp"
+                    android:layout_column="0"
                     android:fontFamily="@font/aclonica"
+                    android:padding="3dip"
+                    android:text="Data"
                     android:textAlignment="center"
                     android:textColor="@color/dark_red" />
+
                 <TextView
+                    android:layout_width="83dp"
+                    android:layout_column="1"
+                    android:fontFamily="@font/aclonica"
+                    android:gravity="center"
+                    android:padding="3dip"
                     android:text="Score"
-                    android:gravity="center"
-                    android:padding="5dip"
-                    android:layout_width="83dp"
-                    android:fontFamily="@font/aclonica"
                     android:textAlignment="center"
-                    android:textColor="@color/dark_red"/>
+                    android:textColor="@color/dark_red" />
+
                 <TextView
-                    android:text="Time"
-                    android:gravity="center"
-                    android:padding="5dp"
                     android:layout_width="83dp"
+                    android:layout_column="2"
                     android:fontFamily="@font/aclonica"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="Time"
                     android:textAlignment="center"
-                    android:textColor="@color/dark_red"/>
+                    android:textColor="@color/dark_red" />
             </TableRow>
 
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="" />
+            </TableRow>
 
         </TableLayout>
 

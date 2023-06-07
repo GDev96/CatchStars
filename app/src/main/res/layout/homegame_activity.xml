@@ -26,7 +26,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/welcome"
         android:fontFamily="@font/aclonica"
-        android:textColor="@color/lightorange"
+        android:textColor="@color/dark_yellow"
         android:textSize="26dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
