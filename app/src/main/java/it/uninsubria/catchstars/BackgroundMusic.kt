@@ -6,13 +6,25 @@ import android.media.MediaPlayer
 import android.os.IBinder
 
 class BackgroundMusic : Service(){
-    internal lateinit var player: MediaPlayer
-    override fun onBind(arg0: Intent): IBinder? {
-
+    internal lateinit var musicplayer: MediaPlayer
+    override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
-    //todo https://stackoverflow.com/questions/58063609/how-to-play-background-music-through-all-activities-using-kotlin
+    override fun onCreate() {
+        super.onCreate()
+        musicplayer = MediaPlayer.create(this, R.raw.spiritual_moment_cut)
+        musicplayer.setLooping(false); // Loop musica
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        musicplayer.stop()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        musicplayer.start()
+        return super.onStartCommand(intent, flags, startId)
+    }
 
 }

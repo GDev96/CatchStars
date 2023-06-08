@@ -21,12 +21,18 @@ class MainActivity : AppCompatActivity() {
             goLoginPage()
         }
 
-        //todo creazione e avvio service musica in sottofondo e suoni
+        startMusic()
     }
 
     //metodo per il passaggio alla schermata di Login
     fun goLoginPage() {
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    //metodo per avvio service musica in background
+    fun startMusic() {
+        val intent = Intent(this@MainActivity, BackgroundMusic::class.java)
+        startService(intent)
     }
 }

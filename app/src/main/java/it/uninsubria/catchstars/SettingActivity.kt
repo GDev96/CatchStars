@@ -1,11 +1,8 @@
 package it.uninsubria.catchstars
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SettingActivity (intent: Intent) : AppCompatActivity() {
@@ -41,14 +38,17 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
             //todo interruzione service suoni tasti
         }
 
-        //tasti musica --> gestione musica in sottofondo
+        //tasti musica -> gestione musica in background
+        // attivazione service musice in background
         MusicOnButton.setOnClickListener{
-            //todo attivazione musica in sottofondo
-            //metodo MusicOn?
+            val intent = Intent(this@SettingActivity, BackgroundMusic::class.java)
+            startService(intent)
         }
 
+        //disattivazione service musica in background
         MusicOffButton.setOnClickListener{
-            //todo disattivazione musica in sottofondo
+            val intent = Intent(this@SettingActivity, BackgroundMusic::class.java)
+            startService(intent)
         }
 
         //info
@@ -75,6 +75,4 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
 nomi metodi layout:
 VolumeOn
 VolumeOff --> Volume.kt
-MusicOn --> BackgroundMusic.kt
-MusicOff
  */
