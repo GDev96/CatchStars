@@ -42,5 +42,6 @@
     <string name="answer_2">Quando scade il tempo, il gioco finisce e il punteggio ottenuto viene salvato all\'interno della tabella punteggi</string>
     <string name="question_3">3. Ho raccolto tutte le stelle ma non ho ottenuto il massimo dei punti, perchè?</string>
     <string name="answer_3">Il punteggio massimo viene assegnato se si raccolgono tutti gli oggetti in meno di 10 minuti, per ogni 30 secondi oltre quel tempo, viene sottratto un punto al punteggio massimo ottenuto nel livello</string>
+    <string name="missione_completata">Missione terminata! Com\'è andata?</string>
 
 </resources>

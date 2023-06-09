@@ -1,10 +1,15 @@
 package it.uninsubria.catchstars
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.Chronometer
+import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
+
 
 class GameActivity (intent : Intent) : AppCompatActivity() {
 
@@ -26,9 +31,15 @@ class GameActivity (intent : Intent) : AppCompatActivity() {
         ScoreButton = findViewById(R.id.score)
 
 
-        //partenza cronometro (?)
-       Time.start()
+        //partenza cronometro
+        Time.start()
 
+        /*
+        if(ptObj == 100){
+            Time.stop() //viene chiamato lo sto al raggiungimento dei 100 punti
+            //chiamare metodo che converte i minuti in secondi
+
+        */
 
         //todo gestione mappa e assegnazione oggetti
         /*
@@ -43,8 +54,14 @@ class GameActivity (intent : Intent) : AppCompatActivity() {
         //todo pulsante catch
         /*
         punteggi stelle: 10,15,20,25,30
-        raccoglie oggetti sulla mappa e aumenta i punti, raggiunto il punteggio massimo dagli
-        oggetti viene chiamato il metodo levelEnded()
+        raccoglie oggetti sulla mappa e aumenta i punti
+
+        onClick: legge il valore assegnato all'oggetto e lo somma al punteggio
+
+        totalPoint() //chiama il metodo di calcolo punti e gli viene passato come argomento il tempo
+        totale registrato dal cronometro (int secondi) e i punti raccolti dal catch
+
+        levelEnded() //chiama il metodo per la fine del livello e la comparsa del popup
         */
 
         //todo progress bar
@@ -57,50 +74,95 @@ class GameActivity (intent : Intent) : AppCompatActivity() {
         }
 
         HomeGameButton.setOnClickListener{
-            val intent = Intent(this@GameActivity, HomeGameActivity::class.java)
-            startActivity(intent)
+            secureExit()
         }
 
         ScoreButton.setOnClickListener{
             val intent = Intent(this@GameActivity, ScoreActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    //todo metodo conversione minuti in secondi
+    private fun timeConverter(){
+        /*gli viene passato il tempo registrato dal cronometro
 
+         TimeTot = Time * 60
+
+         return TimeTot;
+         */
+    }
+
+    //todo metodo gestione cronometro e calcolo punti
+    fun totalPoint() {
+        /*
+        gli viene passato come parametro il punteggio ottenuto dagli oggetti (ptObj)
+        e il tempo convertito dal metodo TimeConverter() (TimeTot)
+
+        int ptObj, ptTot;
+
+        timeTot = timeConverter();
+
+        ptTot = ptObj;
+
+        if(timeTot > 600)
+            plusTime = timeTot - 600 //10min in secondi
+            finalPt = ptTot - (plusTime / 30)
+
+        return finalPt;
+
+        (Il valore di finalPt viene inviato sia al popup sia registrato nel database)
+        */
     }
 
     //todo metodo termine tempo/raccolta oggetti
     fun levelEnded(){
-    /*comparsa finestra (chiamata nuova activity?) di conclusione livello
-    * textview di fine livello
-    * punteggio totale
-    * pulsanti setting, home e score
-    *
-    * vengono conteggiati i punti,
-      inseriti nel database e registrati nella tabella nell'activity score
-      * per ogni 30 secondi che superano i 10 minuti viene sottratto al
-      * punteggio totale 1 pt
-      *
-    * */
+
+        //comparsa popup di fine livello
+        //levelEndedPopup()
+
+        //todo metodo popup fine livello (vedi inflater)
+        /*fun levelEndedPopup(){
+            //inflate al layout del popup
+            val inflater = ViewInflater.from(view).inflate(R.layout.popup_levelend, null)
+
+            //creazione della finestra popup
+            val width = inflater.width()
+            val height = inflater.height()
+            val focusable = true
+
+            // lets taps outside the popup also dismiss it
+            final PopupWindow LevelEnded = PopupWindow(popupView, width, height, focusable)
+
+            //mostra il popup posizionandolo al centro
+            popupWindow.show(view, Gravity.CENTER, 0, 0)
+
+            // fa scomparire il popup quando si tocca la parte esterna della finestra (non necessario)
+            popupView.setOnTouchListener {
+                // onTouchListener is called when the user touches the popup window
+                // if the user taps outside of the popup window, dismiss it
+                if (event.target.isView() && !focusable) {
+                    popupWindow.dismiss()
+                }
+            }
+        }
+          https://stackoverflow.com/questions/5944987/how-to-create-a-popup-window-popupwindow-in-android
+        */
     }
 
-    //todo metodo gestione cronometro
-    fun chronometer(){
-        /*
+    //metodo uscita sicura
+    private fun secureExit() {
+        val builder = AlertDialog.Builder(this@GameActivity)
+        builder.setTitle("Vuoi abbandonare la missione?")
 
-        Time.stop()
+        builder.setPositiveButton("Missione annullata"){ dialog, which ->
+            val intent = Intent(this@GameActivity, HomeGameActivity::class.java)
+            startActivity(intent)
+        }
 
-        creare variabile "tempo totale" (tempo registrato dal chronometro alla chiamata dello stop()
-        creare variabile "tempo aggiunto" ("tempo totale" - 10minuti)
-        creare variabile "punteggio totale"
-        se il "tempo rimanente" è superiore 10 minuti
-            "punteggio totale(int)" - (tempo aggiunto(secondi) / 30 secondi)
+        builder.setNegativeButton("Continua la missione", null)
 
-     tempo per livello: 10 minuti
-
-     partenza cronometro, quando scade il tempo viene chiamato il metodo levelEnded()
-     */
+        val dialog = builder.create()
+        dialog.show()
     }
-
-
 }
