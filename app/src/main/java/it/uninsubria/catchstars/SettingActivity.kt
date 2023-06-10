@@ -31,11 +31,11 @@ class SettingActivity (intent: Intent) : AppCompatActivity() {
 
         //tasti volume -> gestione suoni tasti
         VolOnButton.setOnClickListener{
-            //todo attivazione servizio suoni tasti
+            //todo attivazione servizio suoni tasti (in forse)
         }
 
         VolOffButton.setOnClickListener{
-            //todo interruzione service suoni tasti
+            //todo interruzione service suoni tasti (in forse)
         }
 
         //tasti musica -> gestione musica in background

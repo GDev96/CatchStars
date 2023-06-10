@@ -47,6 +47,9 @@ class GameActivity (intent : Intent) : AppCompatActivity() {
         * massimo oggetti)
         *
         * assegnazione del proprio punteggio al singolo oggetto
+        *
+        * inserire il raggio di inserimento degli indicatori a 150m
+        *
         * controllare: inserimento casuale degli oggetti per ripetizione o singolo livello con
         * inserimento fisso degli oggetti?
         * */
@@ -87,31 +90,31 @@ class GameActivity (intent : Intent) : AppCompatActivity() {
     private fun timeConverter(){
         /*gli viene passato il tempo registrato dal cronometro
 
-         TimeTot = Time * 60
+        //conversione del tempo in formato MM:SS in secondi
+        TimeTot = Time * 60
 
-         return TimeTot;
+        return TimeTot;
          */
     }
 
     //todo metodo gestione cronometro e calcolo punti
     fun totalPoint() {
         /*
-        gli viene passato come parametro il punteggio ottenuto dagli oggetti (ptObj)
+        gli viene passato il punteggio ottenuto dagli oggetti (ptObj)
         e il tempo convertito dal metodo TimeConverter() (TimeTot)
 
-        int ptObj, ptTot;
+        //possibile codice:
+        var ptObj: Int
+        var ptTot: Int
+        ptTot = ptObj
+        val timeTot = timeConverter() (?)
+        if (timeTot > 600) {
+            val plusTime = timeTot - 600 //10min in secondi
+            val finalPt = ptTot - (plusTime / 30)
+            return finalPt
 
-        timeTot = timeConverter();
 
-        ptTot = ptObj;
-
-        if(timeTot > 600)
-            plusTime = timeTot - 600 //10min in secondi
-            finalPt = ptTot - (plusTime / 30)
-
-        return finalPt;
-
-        (Il valore di finalPt viene inviato sia al popup sia registrato nel database)
+        //Il valore di finalPt viene inviato sia al popup sia registrato nel database
         */
     }
 
