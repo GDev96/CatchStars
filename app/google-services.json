@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "479133721346",
+    "project_id": "catchstars-6ce9e",
+    "storage_bucket": "catchstars-6ce9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479133721346:android:e1949e589c82385684181b",
+        "android_client_info": {
+          "package_name": "it.uninsubria.catchstars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479133721346-2mclrhpq9cn2f7tj6ocj27eemd8fgbfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvpHja3j_fknUwWLD2dYdelfWpW_EpAIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479133721346-2mclrhpq9cn2f7tj6ocj27eemd8fgbfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
