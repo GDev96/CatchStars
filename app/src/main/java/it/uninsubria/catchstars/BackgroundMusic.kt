@@ -14,7 +14,7 @@ class BackgroundMusic : Service(){
     override fun onCreate() {
         super.onCreate()
         musicplayer = MediaPlayer.create(this, R.raw.spiritual_moment_cut)
-        musicplayer.setLooping(false); // Loop musica
+        musicplayer.setLooping(true); // Loop musica
     }
 
     override fun onDestroy() {

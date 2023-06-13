@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class HomeGameActivity(intent: Intent) : AppCompatActivity() {
+class HomeGameActivity : AppCompatActivity() {
 
     private lateinit var PlayButton: Button
     private lateinit var SettingButton: Button

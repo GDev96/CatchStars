@@ -11,7 +11,7 @@ import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 
 
-class GameActivity (intent : Intent) : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
 
     private lateinit var Time: Chronometer
     private lateinit var CatchButton: Button

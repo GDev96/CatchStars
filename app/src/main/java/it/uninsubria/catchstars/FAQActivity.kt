@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class FAQActivity (intent : Intent) : AppCompatActivity() {
+class FAQActivity : AppCompatActivity() {
 
     private lateinit var BackButton: Button
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:background="@drawable/StarrySky2"
+    app:background="@drawable/starrysky2"
     tools:context=".GameActivity"
     tools:ignore="ExtraText">
 
@@ -16,7 +16,7 @@
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/StarrySky2"
+        app:srcCompat="@drawable/starrysky2"
         tools:layout_editor_absoluteX="1dp" />
 
     <!-- Missione iniziata! Buona fortuna astronauta-->

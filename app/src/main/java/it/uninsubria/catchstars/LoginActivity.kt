@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -11,12 +12,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LoginActivity(intent: Intent) : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var insertEmail: EditText
     private lateinit var insertPass: EditText
     private lateinit var LogInButton: Button
     private lateinit var SignInButton: Button
+    private lateinit var BackButton: ImageButton
 
     private lateinit var auth: FirebaseAuth;
 
@@ -33,6 +35,7 @@ class LoginActivity(intent: Intent) : AppCompatActivity() {
         insertPass = findViewById(R.id.password)
         LogInButton = findViewById(R.id.login)
         SignInButton = findViewById(R.id.register)
+        BackButton = findViewById(R.id.back_button)
 
         LogInButton.setOnClickListener {
 
@@ -53,5 +56,11 @@ class LoginActivity(intent: Intent) : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+        BackButton.setOnClickListener{
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

@@ -15,7 +15,7 @@
         android:scaleType="centerCrop"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/StarrySky2"
+        app:srcCompat="@drawable/starrysky2"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
@@ -95,7 +95,6 @@
         android:text="@string/action_sign_in"
         android:textColor="@color/yellow"
         android:fontFamily="@font/aclonica"
-        android:background=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -114,7 +113,6 @@
         android:text="@string/register"
         android:fontFamily="@font/aclonica"
         android:textColor="@color/yellow"
-        android:background=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
