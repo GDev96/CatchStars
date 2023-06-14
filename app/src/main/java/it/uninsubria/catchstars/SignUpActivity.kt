@@ -46,22 +46,27 @@ class SignUpActivity : AppCompatActivity() {
         val pass = insertPassword.text.toString()
         val confirm = confirmPassword.text.toString()
 
-        if (TextUtils.isEmpty(email)){
+        //controllo corretteza dei dati
+        if (TextUtils.isEmpty(email)) {
             Toast.makeText(applicationContext, "Inserire email", Toast.LENGTH_LONG).show()
             return
         }
+
         if (TextUtils.isEmpty(user)){
             Toast.makeText(applicationContext, "Inserire identificativo", Toast.LENGTH_LONG).show()
             return
         }
+
         if (TextUtils.isEmpty(pass) || pass.length < 8) {
             Toast.makeText(applicationContext, "Codice di accesso non valido", Toast.LENGTH_LONG).show()
             return
         }
+
         if(TextUtils.isEmpty(confirm)){
             Toast.makeText(applicationContext, "Conferma il tuo codice di accesso", Toast.LENGTH_LONG).show()
             return
         }
+
         if(pass != confirm){
             Toast.makeText(applicationContext, "Codice di accesso errato!", Toast.LENGTH_LONG).show()
             return
@@ -69,6 +74,7 @@ class SignUpActivity : AppCompatActivity() {
 
         //pulsante sign up
         SignUpButton.setOnClickListener{
+
             auth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener{
                     if(it.isSuccessful){
@@ -76,13 +82,20 @@ class SignUpActivity : AppCompatActivity() {
                         val intent = Intent(this@SignUpActivity, LoginActivity::class.java )
                         startActivity(intent)
                     }
+                    else{
+                        Toast.makeText(applicationContext, "Oh oh, qualcosa è andato storto", Toast.LENGTH_LONG).show()
+                    }
                 }
         }
 
         //pulsante back
         BackButton.setOnClickListener{
-            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-            startActivity(intent)
+            Back()
         }
+    }
+
+    fun Back(){
+        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

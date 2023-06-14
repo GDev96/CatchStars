@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CatchStars</string>
+    <string name="app_name">CatchStars!</string>
     <string name="button_play">Play</string>
     <string name="button_send">Send</string>
     <string name="button_catch">Catch</string>

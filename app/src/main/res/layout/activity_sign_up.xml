@@ -74,7 +74,7 @@
       android:layout_marginTop="450dp"
       android:fontFamily="@font/aclonica"
       android:hint="@string/prompt_confirm"
-      android:inputType="textEmailAddress"
+      android:inputType="textPassword"
       android:selectAllOnFocus="true"
       android:textColor="@color/dark_yellow"
       android:textColorHint="@color/dark_yellow"
@@ -104,11 +104,11 @@
 
   <Button
       android:id="@+id/register"
-      android:layout_width="159dp"
+      android:layout_width="179dp"
       android:layout_height="66dp"
       android:layout_gravity="start"
       android:layout_marginBottom="136dp"
-      android:enabled="false"
+      android:backgroundTint="@color/purple_700"
       android:fontFamily="@font/aclonica"
       android:text="@string/done"
       android:textSize="20sp"

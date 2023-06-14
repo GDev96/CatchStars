@@ -37,30 +37,42 @@ class LoginActivity : AppCompatActivity() {
         SignInButton = findViewById(R.id.register)
         BackButton = findViewById(R.id.back_button)
 
+        val email = insertEmail.text.toString()
+        val password = insertPass.text.toString()
+
         LogInButton.setOnClickListener {
 
-            val email = insertEmail.text.toString()
-            val password = insertPass.text.toString()
+            //controllo campi textutils empty... con messaggi di errore
+
 
             //controllo credenziali e accesso alla schermata HomeGame
             auth = FirebaseAuth.getInstance()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task: Task<AuthResult> ->
-                    val intentToMain = Intent(this@LoginActivity, HomeGameActivity::class.java)
-                    startActivity(intentToMain)
+                    val intent = Intent(this@LoginActivity, HomeGameActivity::class.java)
+                    startActivity(intent)
                 }
         }
 
         //passaggio alla schermata SignIn
         SignInButton.setOnClickListener {
-            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
-            startActivity(intent)
+            SignIn()
         }
 
         BackButton.setOnClickListener{
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+            Back()
         }
 
     }
+
+    fun SignIn() {
+        val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun Back() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 }
