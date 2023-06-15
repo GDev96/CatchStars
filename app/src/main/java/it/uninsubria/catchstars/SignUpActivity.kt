@@ -1,101 +1,84 @@
 package it.uninsubria.catchstars
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth;
-    private lateinit var database:FirebaseDatabase
-    private lateinit var dbRef: DatabaseReference
+    private lateinit var auth: FirebaseAuth
     private lateinit var insertEmail: EditText
     private lateinit var insertUsername: EditText
     private lateinit var insertPassword: EditText
     private lateinit var confirmPassword: EditText
-    private lateinit var SignUpButton: Button
-    private lateinit var BackButton: Button
+    private lateinit var signUpButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        dbRef = database.reference
+        auth = Firebase.auth
 
         insertUsername = findViewById(R.id.user)
         insertEmail = findViewById(R.id.email)
         insertPassword = findViewById(R.id.pass)
         confirmPassword = findViewById(R.id.confirm_pass)
-        SignUpButton = findViewById(R.id.register)
+        signUpButton = findViewById(R.id.register)
 
-        //inserimento dati
+        //pulsante sign up
+        signUpButton.setOnClickListener{
+            signUp()
+        }
+    }
+
+    fun signUp(){
+        //compilazione campi
         val email = insertEmail.text.toString()
         val user = insertUsername.text.toString()
         val pass = insertPassword.text.toString()
         val confirm = confirmPassword.text.toString()
 
-        //controllo corretteza dei dati
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Inserire email", Toast.LENGTH_LONG).show()
+        //controllo correttenza compilazione
+        if (TextUtils.isEmpty(email)||TextUtils.isEmpty(user)||TextUtils.isEmpty(pass)||TextUtils.isEmpty(confirm)) {
+            Toast.makeText(applicationContext, "Inserire dati mancanti", Toast.LENGTH_LONG).show()
             return
         }
 
-        if (TextUtils.isEmpty(user)){
-            Toast.makeText(applicationContext, "Inserire identificativo", Toast.LENGTH_LONG).show()
-            return
-        }
-
-        if (TextUtils.isEmpty(pass) || pass.length < 8) {
-            Toast.makeText(applicationContext, "Codice di accesso non valido", Toast.LENGTH_LONG).show()
-            return
-        }
-
-        if(TextUtils.isEmpty(confirm)){
-            Toast.makeText(applicationContext, "Conferma il tuo codice di accesso", Toast.LENGTH_LONG).show()
+        if (pass.length < 6) {
+            Toast.makeText(applicationContext, "Codice di accesso non valido. Inserire almeno 6 caratteri", Toast.LENGTH_LONG).show()
             return
         }
 
         if(pass != confirm){
-            Toast.makeText(applicationContext, "Codice di accesso errato!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Conferma del codice di accesso errata!", Toast.LENGTH_LONG).show()
             return
         }
 
-        //pulsante sign up
-        SignUpButton.setOnClickListener{
-
-            auth.createUserWithEmailAndPassword(email, pass)
-                .addOnCompleteListener{
-                    if(it.isSuccessful){
-                        Toast.makeText(applicationContext, "Registrazione completata! Benvenuto a bordo!", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java )
-                        startActivity(intent)
-                    }
-                    else{
-                        Toast.makeText(applicationContext, "Oh oh, qualcosa è andato storto", Toast.LENGTH_LONG).show()
-                    }
-                }
-        }
-
-        //pulsante back
-        BackButton.setOnClickListener{
-            Back()
+        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                Log.d(TAG, "createUserWithEmail:success")
+                Toast.makeText(applicationContext, "Registrazione completata!", Toast.LENGTH_LONG).show()
+                goHomeGameActivity()
+            } else {
+                Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                Toast.makeText(baseContext, "Ops! Qualcosa è andato storto", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    fun Back(){
-        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-        startActivity(intent)
+    private fun goHomeGameActivity(){
+         val intent = Intent(this@SignUpActivity, HomeGameActivity::class.java )
+         startActivity(intent)
     }
+
 }

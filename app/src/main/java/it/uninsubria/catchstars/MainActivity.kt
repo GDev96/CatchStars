@@ -2,7 +2,6 @@ package it.uninsubria.catchstars
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //metodo per avvio service musica in background
-    fun startMusic() {
+    private fun startMusic() {
         val intent = Intent(this@MainActivity, BackgroundMusic::class.java)
         startService(intent)
     }

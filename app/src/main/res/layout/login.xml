@@ -90,17 +90,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="150dp"
         android:text="@string/action_sign_in"
         android:textColor="@color/yellow"
         android:backgroundTint="@color/purple_700"
         android:fontFamily="@font/aclonica"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.500" />
+        />
 
     <Button
         android:id="@+id/register"
@@ -108,33 +107,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="100dp"
         android:backgroundTint="@color/purple_700"
         android:text="@string/register"
         android:fontFamily="@font/aclonica"
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.750" />
-
-
-    <!--pulsante back per tornare alla home -->
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@null"
-        android:scaleType="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        app:srcCompat="@drawable/back" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

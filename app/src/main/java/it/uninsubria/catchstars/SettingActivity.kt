@@ -19,7 +19,7 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
-
+/*
         //associazione variabili
         VolOnButton = findViewById(R.id.volumeOn_button)
         VolOffButton = findViewById(R.id.volumeOff_button)
@@ -31,11 +31,11 @@ class SettingActivity : AppCompatActivity() {
 
         //tasti volume -> gestione suoni tasti
         VolOnButton.setOnClickListener{
-            //todo attivazione servizio suoni tasti (in forse)
+            //to do attivazione servizio suoni tasti (in forse)
         }
 
         VolOffButton.setOnClickListener{
-            //todo interruzione service suoni tasti (in forse)
+            //to do interruzione service suoni tasti (in forse)
         }
 
         //tasti musica -> gestione musica in background
@@ -68,6 +68,8 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this@SettingActivity, HomeGameActivity::class.java)
             startActivity(intent)
         }
+
+ */
     }
 
 }
