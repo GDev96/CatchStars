@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.Chronometer
+import android.widget.ImageButton
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 class GameActivity : AppCompatActivity() {
 
     private lateinit var Time: Chronometer
-    private lateinit var CatchButton: Button
-    private lateinit var SettingButton: Button
-    private lateinit var HomeGameButton: Button
-    private lateinit var ScoreButton: Button
+    private lateinit var CatchButton: ImageButton
+    private lateinit var SettingButton: ImageButton
+    private lateinit var HomeGameButton: ImageButton
+    private lateinit var ScoreButton: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

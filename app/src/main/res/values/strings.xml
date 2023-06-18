@@ -36,12 +36,21 @@
     <string name="date">Data di rilascio: 06/2023</string>
     <string name="name">Sviluppatore: Frattini Gaia - mt. 736610</string>
     <string name="question">Hai delle domande?</string>
-    <string name="question_1">1. Quanti punti vale una stella?</string>
-    <string name="answer_1">Ogni stella ha un punteggio diverso assegnato in base al punto di partenza dell\'astronauta, i punteggi sono: 10, 15, 20, 25 e 30 punti</string>
-    <string name="question_2">2. Cosa succede allo scadere del tempo?</string>
-    <string name="answer_2">Quando scade il tempo, il gioco finisce e il punteggio ottenuto viene salvato all\'interno della tabella punteggi</string>
-    <string name="question_3">3. Ho raccolto tutte le stelle ma non ho ottenuto il massimo dei punti, perchè?</string>
-    <string name="answer_3">Il punteggio massimo viene assegnato se si raccolgono tutti gli oggetti in meno di 10 minuti, per ogni 30 secondi oltre quel tempo, viene sottratto un punto al punteggio massimo ottenuto nel livello</string>
+    <string name="question_1">1. Quanti punti vale una stella gialla?</string>
+    <string name="answer_1">Il valore delle stelle gialle dipende dalla distanza che l\'astronauta deve percorrere per raggiungerla. La somma totale del loro valore è 100 punti. La stella più lontana vale 50 punti.</string>
+    <string name="question_2">2. Come si ottiene il punteggio massimo?</string>
+    <string name="answer_2">er ottenere il massimo dei punti, l\'astronauta deve raccogliere tutte le stelle, sia gialle sia azzurre, prima di raggiungere la soglia critica di ossigeno.</string>
+    <string name="question_3">3. In cosa consiste la penalità della soglia critica di ossigeno?</string>
+    <string name="answer_3">Una volta superata la soglia critica di ossigeno, ogni 30 secondi viene sottratto un punto dal punteggio ottenuto raccogliendo le stelle.</string>
     <string name="missione_completata">Missione terminata! Com\'è andata?</string>
+    <string name="rules">Pronto a iniziare?</string>
+    <string name="annulla_missione">Annulla missione</string>
+    <string name="partenza">Partenza!</string>
+    <string name="rule1">L\'obiettivo è raccogliere tutte le stelline sulla mappa.</string>
+    <string name="rule2">Le stelline azzurre valgono 1 punto.</string>
+    <string name="rule3">Le stelline gialle hanno un punteggio variabile basato sulla distanza.</string>
+    <string name="rule4">Più stelle raccogli più sarà alto il punteggio missione.</string>
+    <string name="rule5">Attenzione! L\'ossigeno è limitato: dopo i 10 minuti supererai la soglia critica e il tuo punteggio inizierà a risentirne.</string>
+    <string name="rule6">Buona fortuna astronauta!</string>
 
 </resources>

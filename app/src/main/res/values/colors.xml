@@ -12,5 +12,7 @@
     <color name="dark_yellow">#F0D133</color>
     <color name="dark_red">#8e1922</color>
     <color name="red">#BE1922</color>
-    <color name="orange">#e36d30</color>
+    <color name="orange">#FF9800</color>
+    <color name="light_yellow">#FFF1AD</color>
+
 </resources>
