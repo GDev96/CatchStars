@@ -3,38 +3,54 @@ package it.uninsubria.catchstars
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.Chronometer
 import android.widget.ImageButton
-import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(), OnMapReadyCallback{
 
     private lateinit var Time: Chronometer
+    //private lateinit var MapView: SupportMapFragment
+    private lateinit var googleMap: GoogleMap
     private lateinit var CatchButton: ImageButton
     private lateinit var SettingButton: ImageButton
     private lateinit var HomeGameButton: ImageButton
     private lateinit var ScoreButton: ImageButton
 
+    /*marker
+    val entrance = LatLng(45.798328, 8.847318)
+    val church = LatLng(45.798281, 8.849082)
+    val dorm = LatLng(45.796906, 8.851511)
+    val mtg = LatLng(45.797838, 8.852398)
+    val cus = LatLng(45.796946, 8.853696)
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
         Time = findViewById(R.id.time)
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.Map) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
+
         CatchButton = findViewById(R.id.catch_button)
         SettingButton = findViewById(R.id.setting)
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
 
-
         //partenza cronometro
         Time.start()
-
         /*
         if(ptObj == 100){
             Time.stop() //viene chiamato lo sto al raggiungimento dei 100 punti
@@ -42,7 +58,12 @@ class GameActivity : AppCompatActivity() {
 
         */
 
-        //todo gestione mappa e assegnazione oggetti
+        //onMapReady(googleMap) --> non serve
+
+        //todo inserimento posizione utente nella mappa e geolocalizzazione
+        //todo assegnazione punti ai puntatori in base alla posizione iniziale dell'utente
+            //https://developers.google.com/maps/documentation/android-sdk/marker?hl=it#maps_android_markers_add_a_marker-kotlin
+            //https://developers.google.com/maps/documentation/android-sdk/location?hl=it
         /*
         * l'oggetto più lontano deve essere raggiungibile in meno di 10 minuti a piedi (raggio
         * massimo oggetti)
@@ -87,6 +108,53 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    //add marker stars
+    override fun onMapReady(googleMap: GoogleMap) {
+        // Add a marker
+        // and move the map's camera to the same location.
+        val entrance = LatLng(45.798328, 8.847318)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(entrance)
+                .title("Entrance campus")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(entrance))
+
+        val church = LatLng(45.798281, 8.849082)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(church)
+                .title("Church")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(church))
+
+        val dorm = LatLng(45.796906, 8.851511)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(dorm)
+                .title("Dorm")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dorm))
+
+        val mtg = LatLng(45.797838, 8.852398)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(mtg)
+                .title("MTG")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(mtg))
+
+        val cus = LatLng(45.796946, 8.853696)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(cus)
+                .title("CUS Insubria")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
+    }
+
+
+
     //todo metodo conversione minuti in secondi
     private fun timeConverter(){
         /*gli viene passato il tempo registrato dal cronometro
@@ -122,36 +190,8 @@ class GameActivity : AppCompatActivity() {
     //todo metodo termine tempo/raccolta oggetti
     fun levelEnded(){
 
-        //comparsa popup di fine livello
+        //finestra act di fine livello
         //levelEndedPopup()
-
-        //todo metodo popup fine livello (vedi inflater)
-        /*fun levelEndedPopup(){
-            //inflate al layout del popup
-            val inflater = ViewInflater.from(view).inflate(R.layout.popup_levelend, null)
-
-            //creazione della finestra popup
-            val width = inflater.width()
-            val height = inflater.height()
-            val focusable = true
-
-            // lets taps outside the popup also dismiss it
-            final PopupWindow LevelEnded = PopupWindow(popupView, width, height, focusable)
-
-            //mostra il popup posizionandolo al centro
-            popupWindow.show(view, Gravity.CENTER, 0, 0)
-
-            // fa scomparire il popup quando si tocca la parte esterna della finestra (non necessario)
-            popupView.setOnTouchListener {
-                // onTouchListener is called when the user touches the popup window
-                // if the user taps outside of the popup window, dismiss it
-                if (event.target.isView() && !focusable) {
-                    popupWindow.dismiss()
-                }
-            }
-        }
-          https://stackoverflow.com/questions/5944987/how-to-create-a-popup-window-popupwindow-in-android
-        */
     }
 
     //metodo uscita sicura
