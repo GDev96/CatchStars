@@ -6,7 +6,9 @@ import android.media.MediaPlayer
 import android.os.IBinder
 
 class BackgroundMusic : Service(){
+
     internal lateinit var musicplayer: MediaPlayer
+
     override fun onBind(intent: Intent): IBinder? {
         return null
     }

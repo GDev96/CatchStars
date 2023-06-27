@@ -9,16 +9,6 @@
     tools:context=".SettingActivity"
     tools:ignore="ExtraText">
 
-    <ImageView
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/starrysky2"
-        tools:layout_editor_absoluteX="16dp" />
-
     <TextView
         android:id="@+id/setting"
         android:layout_width="300dp"
@@ -37,36 +27,8 @@
         />
 
     <!--pulsante attivazione volume-->
-    <ImageButton
-        android:id="@+id/volumeOn_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@null"
-        android:scaleType="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30"
-        app:srcCompat="@drawable/vol_on"
-        />
 
     <!--pulsante disattivazione volume-->
-    <ImageButton
-        android:id="@+id/volumeOff_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@null"
-        android:scaleType="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30"
-        app:srcCompat="@drawable/vol_off"
-        />
 
     <!--pulsante attivazione musica-->
     <ImageButton
@@ -80,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55
+        app:layout_constraintVertical_bias="0.35
 "
         app:srcCompat="@drawable/music_on"
         />
@@ -97,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintVertical_bias="0.50"
         app:srcCompat="@drawable/music_off"
         />
 
@@ -128,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.80"
+        app:layout_constraintVertical_bias="0.65"
         app:srcCompat="@drawable/info" />
 
     <!--pulsante FAQ -->
