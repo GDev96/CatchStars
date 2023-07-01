@@ -47,10 +47,12 @@
     <string name="annulla_missione">Annulla missione</string>
     <string name="partenza">Partenza!</string>
     <string name="rule1">L\'obiettivo è raccogliere tutte le stelline sulla mappa.</string>
-    <string name="rule2">Le stelline azzurre valgono 1 punto.</string>
-    <string name="rule3">Le stelline gialle hanno un punteggio variabile basato sulla distanza.</string>
+    <string name="rule2">Per raccogliere una stellina dovrai prima entrare nel suo campo gravitazionale (circa 5 metri), se sarai troppo lontano non potrai catturarla</string>
+    <string name="rule3">Le stelline non hanno tutte lo stesso punteggio, alcune valgono poco, altre moltissimo</string>
     <string name="rule4">Più stelle raccogli più sarà alto il punteggio missione.</string>
     <string name="rule5">Attenzione! L\'ossigeno è limitato: dopo i 10 minuti supererai la soglia critica e il tuo punteggio inizierà a risentirne.</string>
     <string name="rule6">Buona fortuna astronauta!</string>
+    <string name="title_activity_maps">activity_maps</string>
+    <string name="title_activity_maps_current_place">MapsActivityCurrentPlace</string>
 
 </resources>

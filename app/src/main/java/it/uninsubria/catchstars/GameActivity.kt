@@ -1,29 +1,22 @@
 package it.uninsubria.catchstars
 
 import android.Manifest
-import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import android.text.format.Time
-import android.util.Log
-import android.view.View
-import android.widget.Button
+import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
 import android.widget.Chronometer
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.loader.content.AsyncTaskLoader
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
@@ -31,18 +24,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.maps.model.LatLng
-import java.lang.Math.pow
-import kotlin.math.cos
-import kotlin.math.pow
-import kotlin.math.sin
-import kotlin.math.sqrt
-import kotlin.random.Random
+import kotlin.math.*
 
-class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListener {
+class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var Time: Chronometer
     private lateinit var ProgressBar: ProgressBar
-    //private lateinit var CatchButton: ImageButton
     private lateinit var SettingButton: ImageButton
     private lateinit var HomeGameButton: ImageButton
     private lateinit var ScoreButton: ImageButton
@@ -52,85 +39,67 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private val dorm = LatLng(45.796906, 8.851511)
     private val mtg = LatLng(45.797838, 8.852398)
     private val cus = LatLng(45.796946, 8.853696)
-    private val albero = LatLng(45.825538, 8.849489)
+    private val magnolia = LatLng(45.824752, 8.850037)
+    private val pilastro = LatLng(45.825777, 8.849119)
+    private val faggio = LatLng(45.825531, 8.849522)
 
     private var markerEntrance: Marker? = null
     private var markerChurch: Marker? = null
     private var markerDorm: Marker? = null
     private var markerMTG: Marker? = null
     private var markerCUS: Marker? = null
-    private var markerAlbero: Marker? = null
+    private var markerMagnolia: Marker? = null
+    private var markerPilastro: Marker? = null
+    private var markerFaggio: Marker? = null
 
     private var userMarker: Marker? = null
+
+    //punteggi stelle
+    private val ptStar1 = 5
+    private val ptStar2 = 10
+    private val ptStar3 = 15
+    private val ptStar4 = 20
+    private val ptStar5 = 25
+
+    private val pil = 60
+    private val fag = 40
+    private val mag = 40
 
     private lateinit var Map: GoogleMap
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val permissionCode = 101
+    private var currentUserLocation: LatLng? = null
 
-    //inizializzazione punteggio totale utente
     private var ptTot = 0
 
-    //inizializzazione progress bar
     private var currentProgress = 0
-
-    companion object {
-        //
-        private const val DEFAULT_ZOOM = 15
-        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
-
-        // Keys for storing activity state.
-        private const val KEY_CAMERA_POSITION = "camera_position"
-        private const val KEY_LOCATION = "location"
-
-        // Used for selecting the current place.
-        private const val M_MAX_ENTRIES = 5
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
         Time = findViewById(R.id.time)
-        //CatchButton = findViewById(R.id.catch_button)
         ProgressBar = findViewById(R.id.progressbar)
         SettingButton = findViewById(R.id.setting)
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
 
-        //ci deve essere per forza
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         Time.setTypeface(ResourcesCompat.getFont(this, R.font.aclonica)); //font cronometro
-
-        //partenza cronometro
         Time.start()
 
         //inserimento posizione utente nella mappa e geolocalizzazione
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        /*
-        * -- il punteggio dell'utente è inizialmente impostato a 0, quando un utente si avvicina a una stella (<5m),
-        *    per catturarla deve premere sulla stella (onMarkerClick): si controlla la differenza della
-        *    distanza tra utente e oggetto, si legge il valore della stella e lo si
-        *    somma al punteggio, la progressbar viene incrememntata di 1; se superiore ai 5m, makeText all'utente
-        *    che deve avvicinarsi
-        * ...
-        * ...
-        *
-        * */
-
-        //assegnazione posizione iniziale utente a una variabile
-        //val userLocation = getCurrentLocationUser()
-
         ProgressBar.setProgress(currentProgress)//imposta il valore iniziale della progressbar
 
-        //todo metodi di fine livello
-        //if(ptTot == 100)
-        //  levelEnded() //chiama il metodo per la fine del livello e la comparsa del popup
+        //todo fine livello - da controllare
+        if(ptTot == 100)
+            levelEnded()
 
-        //pulsanti home, setting e score
         SettingButton.setOnClickListener{
             val intent = Intent(this@GameActivity, SettingActivity::class.java)
             startActivity(intent)
@@ -146,14 +115,14 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         }
     }
 
-
     //add marker stars e posizione utente statica
     override fun onMapReady(googleMap: GoogleMap) {
 
         Map = googleMap
 
-        Map.setMaxZoomPreference(18.0f) // Imposta il valore massimo dello zoom
-        Map.setMinZoomPreference(10.0f) // Imposta il valore minimo dello zoom
+        //regolazione dello zoom della mappa
+        Map.setMaxZoomPreference(25.0f)
+        Map.setMinZoomPreference(14.0f)
 
         //visualizzazione indicatori
         markerEntrance = Map.addMarker(
@@ -162,7 +131,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .title("30 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(entrance))
-        markerEntrance?.tag = 30
+        markerEntrance?.tag = ptStar5//30 punti
 
         markerChurch = Map.addMarker(
             MarkerOptions()
@@ -170,7 +139,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .title("25 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(church))
-        markerChurch?.tag = 25
+        markerChurch?.tag = ptStar4 //25 punti
 
         markerDorm = Map.addMarker(
             MarkerOptions()
@@ -178,7 +147,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .title("15 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(dorm))
-        markerDorm?.tag = 15
+        markerDorm?.tag = ptStar2//15 punti
 
         markerMTG = Map.addMarker(
             MarkerOptions()
@@ -186,7 +155,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .title("10 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(mtg))
-        markerMTG?.tag = 10
+        markerMTG?.tag = ptStar1 //10 punti
 
         markerCUS = Map.addMarker(
             MarkerOptions()
@@ -194,25 +163,37 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .title("20 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
-        markerCUS?.tag = 20
+        markerCUS?.tag = ptStar3 //20 punti
 
-        markerAlbero = Map.addMarker(
+        //marker di testing
+        markerPilastro = Map.addMarker(
             MarkerOptions()
-                .position(albero)
-                .title("5 pt")
+                .position(pilastro)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
-        markerAlbero?.tag = 5
+        markerPilastro?.tag = pil//60 punti
+
+        markerMagnolia = Map.addMarker(
+            MarkerOptions()
+                .position(magnolia)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
+        markerMagnolia?.tag = mag //40 punti
+
+        markerFaggio = Map.addMarker(
+            MarkerOptions()
+                .position(faggio)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
+        markerFaggio?.tag = fag //40 punti
 
         Map.setOnMarkerClickListener(this)
 
         getCurrentLocationUser()
-
     }
 
-
     //geolocalizzazione in tempo reale
-    private fun getCurrentLocationUser() { //callback: (LatLng?) -> Unit
+    private fun getCurrentLocationUser() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -229,37 +210,32 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 ),
                 permissionCode
             )
-            /*
-            callback(null)
-             */
-
         } else {
             Map.isMyLocationEnabled = true
 
-            fusedLocationProviderClient.lastLocation.addOnSuccessListener {
-                    location ->
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     val latLng = LatLng(location.latitude, location.longitude)
 
+                    currentUserLocation = latLng
+
                     Map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 
-                    //creazione marker utente, viene aggiornata la posizione solo premendo sulla mappa
+                    /*
                     if (userMarker != null) {
                         userMarker!!.remove()
                     }
 
+                    //creazione marker utente
                     val markerOptions = MarkerOptions()
                         .position(latLng)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.character40))
                     userMarker = Map.addMarker(markerOptions)
 
+                    userMarker?.position = latLng
 
-                    /*
-                }else{
-                    callback(null)
-                }
-                 */
-
+                     */
                 }
             }
         }
@@ -273,151 +249,110 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == permissionCode) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Location permissions granted, start location updates
+                // Accesso alla posizione, avvia l'aggiornamento della posizione
                 getCurrentLocationUser()
-                /*
-                { userLocation ->
-                    if (userLocation != null) {
-                        // User location is available, do something with it
-                    } else {
-                        // User location is not available, handle the case
-                        Toast.makeText(this, "Impossibile ottenere la posizione dell'utente", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                 */
             }
         }
     }
 
-    //todo markerClick
+    // Funzione per calcolare la distanza tra due posizioni LatLng
+    private fun calculateDistance(user: LatLng, star: LatLng): Float {
+        val results = FloatArray(1)
+        Location.distanceBetween(
+            user.latitude, user.longitude,
+            star.latitude, star.longitude,
+            results
+        )
+        return results[0]
+    }
 
+    //markerClick //funziona
     override fun onMarkerClick(marker: Marker): Boolean {
 
-            val userLocation = userMarker?.position
+        //aggiorna la posizione dell'utente
+        getCurrentLocationUser()
+        // Verifica se la posizione utente corrente è disponibile
+        val userLocation = currentUserLocation
+        if (userLocation != null) {
             val starLocation = marker.position
 
-            val userLat = Math.toRadians(userLocation?.latitude as Double)
-            val userLng = Math.toRadians(userLocation.longitude as Double)
-            val starLat = Math.toRadians(starLocation.latitude)
-            val starLng = Math.toRadians(starLocation.longitude)
+            // Calcola la distanza tra il marker e la posizione utente
+            val distance = calculateDistance(starLocation, userLocation)
 
-            val earthRadius = 6371.0 // Earth's radius in kilometers
+            if (distance < 5) {
+                val ptStar = marker.tag as? Int
+                if (ptStar != null) {
+                    ptTot += ptStar
 
-            val latDistance = starLat - userLat
-            val lngDistance = starLng - userLng
+                    marker.isVisible = false // nasconde la stellina
 
-            val a = sin(latDistance / 2) * sin(latDistance / 2) +
-                    cos(Math.toRadians(userLat)) * cos(Math.toRadians(starLat)) *
-                    sin(lngDistance / 2) * sin(lngDistance / 2)
+                    //Incremento progress bar
+                    currentProgress = currentProgress + ptTot
+                    ProgressBar.progress = currentProgress
+                    ProgressBar.max = 100 //valore massimo della progress bar
 
-            val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-
-            val distance = earthRadius * c * 1000 // Distance in meters
-
-            if (distance < 2) {
-                val tag = marker.tag
-                if (tag != null) {
-                    val ptStar = tag.toString().toIntOrNull()
-                    if (ptStar != null) {
-                        ptTot += ptStar
-
-                        marker.isVisible = false // Hide the marker
-
-                        //Increment progressbar
-                        currentProgress++
-                        ProgressBar.progress = currentProgress
-                        ProgressBar.max = 5 // Set the maximum value of the progressbar
-
-                        val longMessCongrat = "Congratulazioni! Hai catturato una stella! \nIl tuo punteggio è: $ptTot"
-                        Toast.makeText(this, longMessCongrat, Toast.LENGTH_LONG).show()
-
-                    } else {
-                        Toast.makeText(this, "Il valore del tag non può essere convertito in un intero", Toast.LENGTH_LONG).show()
-
-                    }
+                    val longMessCongrat =
+                        "Hai catturato una stella! \nIl tuo punteggio è: $ptTot"
+                    Toast.makeText(this, longMessCongrat, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Errore nella cattura! Riprova!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        "Ops, cattura non riuscita. Riprova!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-
-
-
-
-
             } else {
-                marker.title //todo da controllare
-                val missingDistance = (distance - 2).toInt()
-                val longMessDistance = "Ti mancano $missingDistance metri, \navvicinati per raccogliere la stellina!"
+                val missingDistance = (distance - 5).toInt()
+                val longMessDistance = "Ti mancano $missingDistance metri alla stellina!"
                 Toast.makeText(
                     this,
                     longMessDistance,
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
             }
+        }
         return true
     }
 
 
-    //todo metodo raccolta oggetti
+    //todo metodo fine livello - da controllare
     fun levelEnded(){
 
-        /*
-        //quando i punti totali degli oggetti arrivano a 100, il livello termina e si avviano i metodi
-        di calcolo punteggio
-        if(ptObj == 100){
-            Time.stop() //viene chiamato lo stop al raggiungimento dei 100 punti
-            timeconverter(Time) //chiama metodo che converte i minuti in secondi
+        Time.stop() //ferma il cronometro
 
-        totalPoint() //chiama il metodo di calcolo punti e gli viene passato come argomento il tempo
-        totale registrato dal cronometro (int secondi) e i punti raccolti dal catch
-        */
+        // Conversione dei minuti in secondi
+        val timeInSecond = timeConverter(Time)
+
+        // Calcolo finale punti
+        val finalPt = totalPoint(timeInSecond)
+
+        //apertura schermata di fine livello
+        val intent = Intent(this@GameActivity, LevelEnded::class.java)
+        intent.putExtra("Punteggio finale:", finalPt)
+        startActivity(intent)
     }
 
-    //todo metodo conversione minuti in secondi
-    private fun timeConverter(){
+    //todo metodo conversione minuti in secondi - da controllare
+    private fun timeConverter(Time: Chronometer): Int{
 
-        /*
-        conversione del tempo ottenuto dal cronometro in secondi
-        import java.time.Duration
+        val timeInMillis = SystemClock.elapsedRealtime() - Time.base
+        val timeInSecond = timeInMillis / 1000
 
-        fun main() {
-            val duration = Duration.ofMinutes(2).plusSeconds(30) // Esempio di durata di 2 minuti e 30 secondi
-
-            val seconds = duration.toSeconds()
-            val secondsInt = seconds.toInt()
-
-            println("Tempo in secondi: $secondsInt")
-        }*/
-
-
-        /*gli viene passato il tempo registrato dal cronometro al momento del timeStop
-
-        //conversione del tempo in formato MM:SS in secondi
-        timeTot = Time * 60 //as Int
-
-        return timeTot;
-         */
+        return timeInSecond.toInt()
     }
 
-    //todo metodo gestione cronometro e calcolo punti
-    fun totalPoint(ptTot: Int) {
-        /*
-        gli viene passato il punteggio ottenuto dagli oggetti (ptObj)
-        e il tempo convertito dal metodo TimeConverter() (TimeTot)
+    //todo metodo gestione cronometro e calcolo punti - da controllare
+    fun totalPoint(timeInSecond: Int): Int {
 
-        //possibile codice:
+        var finalPt = ptTot
 
-        val timeTot = timeConverter() (?)
-        if (timeTot > 600) {
-            val plusTime = timeTot - 600 //10min in secondi
-            val finalPt = ptTot - (plusTime / 30)
-            return finalPt
+        if(timeInSecond < 600) {
+            val plusTime = timeInSecond - 600 //10min in secondi
+            finalPt = ptTot - (plusTime / 30)
+        }
 
-
-        //Il valore di finalPt viene inviato sia al popup sia registrato nel database
-        */
+        return finalPt
     }
-
 
     //metodo uscita sicura
     private fun secureExit() {
@@ -434,11 +369,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         val dialog = builder.create()
         dialog.show()
     }
-
-
 }
-
-
 
 private fun GoogleMap.setOnMyLocationClickListener(gameActivity: GameActivity) {
 }
