@@ -2,8 +2,7 @@ package it.uninsubria.catchstars
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +19,13 @@ class LevelEnded : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //permette l'apertura dell'activity come finestra popup
+        val layoutParams = WindowManager.LayoutParams()
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        window.attributes = layoutParams
+
         setContentView(R.layout.popup_levelend)
 
         ScoreView = findViewById(R.id.scoreview)
@@ -27,11 +33,10 @@ class LevelEnded : AppCompatActivity() {
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
 
-        //todo inserimento risultato calcolo score nel textview - da controllare
         //riceve come parametro il risultato del calcolo punti
         val finalPt = intent.getIntExtra("Punteggio finale:", defaultPt)
         val Score = ScoreView
-        Score.text = finalPt.toString()
+        Score.text = finalPt.toString() //stampa il valore del punteggio calcolato
 
         SettingButton.setOnClickListener{
             val intent = Intent(this@LevelEnded, SettingActivity::class.java)

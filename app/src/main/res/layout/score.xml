@@ -1,133 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:background="@drawable/starrysky2"
-    tools:context=".ScoreActivity"
-    tools:ignore="ExtraText">
-
-    <ImageView
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/starrysky2" />
-
-    <TextView
-        android:id="@+id/score"
+    <TableLayout
+        android:id="@+id/tablescore"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/score"
-        android:textAlignment="center"
-        android:textColor="@color/light_orange"
-        android:textSize="26dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--tabella punti -->
-    <fragment
-        android:layout_width="250dp"
         android:layout_height="400dp"
-        android:layout_marginTop="188dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginTop="190dp"
+        android:background="@drawable/table_layout"
+        android:padding="15dp"
+        android:stretchColumns="3">
 
-        <!--
-        inserire tabella registrazioni punteggi
-            Colonne: date - time - score
-        -->
-        <TableLayout
-            android:id="@+id/tablescore"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/table_layout"
-            android:stretchColumns="3">
+        <TableRow>
 
-            <TableRow android:background="@drawable/main_row">
+            <TextView
+                android:id="@+id/data"
+                android:background="@drawable/textfield_table"
+                android:layout_width="90dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/dark_red"/>
 
-                <TextView
-                    android:layout_width="84dp"
-                    android:layout_column="0"
-                    android:fontFamily="@font/aclonica"
-                    android:padding="3dip"
-                    android:text="Data"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_red" />
+            <TextView
+                android:id="@+id/points"
+                android:background="@drawable/textfield_table"
+                android:layout_width="90dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/dark_red"/>
 
-                <TextView
-                    android:layout_width="83dp"
-                    android:layout_column="1"
-                    android:fontFamily="@font/aclonica"
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="Score"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_red" />
+            <TextView
+                android:id="@+id/time"
+                android:background="@drawable/textfield_table"
+                android:layout_width="90dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/dark_red"/>
 
-                <TextView
-                    android:layout_width="83dp"
-                    android:layout_column="2"
-                    android:fontFamily="@font/aclonica"
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="Time"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_red" />
-            </TableRow>
+        </TableRow>
+    </TableLayout>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_column="0"
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-
-                <TextView
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-
-                <TextView
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_column="0"
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-
-                <TextView
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-
-                <TextView
-                    android:gravity="center"
-                    android:padding="3dip"
-                    android:text="" />
-            </TableRow>
-
-        </TableLayout>
-
-    </fragment>
-
-</androidx.constraintlayout.widget.ConstraintLayout>

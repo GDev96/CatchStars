@@ -9,6 +9,16 @@
     tools:context=".SettingActivity"
     tools:ignore="ExtraText">
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/starrysky2"
+        tools:layout_editor_absoluteX="1dp" />
+
     <TextView
         android:id="@+id/setting"
         android:layout_width="300dp"
@@ -26,10 +36,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <!--pulsante attivazione volume-->
-
-    <!--pulsante disattivazione volume-->
-
     <!--pulsante attivazione musica-->
     <ImageButton
         android:id="@+id/musicOn_button"
@@ -42,8 +48,7 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35
-"
+        app:layout_constraintVertical_bias="0.35"
         app:srcCompat="@drawable/music_on"
         />
 

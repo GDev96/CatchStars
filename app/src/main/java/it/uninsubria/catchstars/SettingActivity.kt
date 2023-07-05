@@ -27,7 +27,7 @@ class SettingActivity : AppCompatActivity() {
         BackButton = findViewById(R.id.back_button)
 
         //tasti musica -> gestione musica in background
-        // attivazione service musice in background
+        // attivazione service musica in background
         MusicOnButton.setOnClickListener{
             val intent = Intent(this@SettingActivity, BackgroundMusic::class.java)
             startService(intent)
@@ -36,7 +36,7 @@ class SettingActivity : AppCompatActivity() {
         //disattivazione service musica in background
         MusicOffButton.setOnClickListener{
             val intent = Intent(this@SettingActivity, BackgroundMusic::class.java)
-            startService(intent)
+            stopService(intent)
         }
 
         //info

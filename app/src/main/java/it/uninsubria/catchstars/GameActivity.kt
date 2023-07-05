@@ -96,10 +96,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         ProgressBar.setProgress(currentProgress)//imposta il valore iniziale della progressbar
 
-        //todo fine livello - da controllare
-        if(ptTot == 100)
-            levelEnded()
-
         SettingButton.setOnClickListener{
             val intent = Intent(this@GameActivity, SettingActivity::class.java)
             startActivity(intent)
@@ -311,6 +307,10 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 ).show()
             }
         }
+        //todo fine livello - da controllare
+        if(ptTot == 100)
+            levelEnded()
+
         return true
     }
 

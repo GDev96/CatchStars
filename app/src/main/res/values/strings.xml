@@ -42,7 +42,7 @@
     <string name="answer_2">er ottenere il massimo dei punti, l\'astronauta deve raccogliere tutte le stelle, sia gialle sia azzurre, prima di raggiungere la soglia critica di ossigeno.</string>
     <string name="question_3">3. In cosa consiste la penalità della soglia critica di ossigeno?</string>
     <string name="answer_3">Una volta superata la soglia critica di ossigeno, ogni 30 secondi viene sottratto un punto dal punteggio ottenuto raccogliendo le stelle.</string>
-    <string name="missione_completata">Missione terminata! Com\'è andata?</string>
+    <string name="missione_completata">Missione terminata!</string>
     <string name="rules">Pronto a iniziare?</string>
     <string name="annulla_missione">Annulla missione</string>
     <string name="partenza">Partenza!</string>

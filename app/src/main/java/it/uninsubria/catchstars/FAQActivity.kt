@@ -3,11 +3,12 @@ package it.uninsubria.catchstars
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 class FAQActivity : AppCompatActivity() {
 
-    private lateinit var BackButton: Button
+    private lateinit var BackButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
