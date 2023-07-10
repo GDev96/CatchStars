@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="300dp"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
         android:layout_marginTop="200dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/title"
@@ -55,14 +55,14 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <!--Versione-->
+
     <TextView
-        android:id="@+id/version"
+        android:id="@+id/contact"
         android:layout_width="300dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="330dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/version"
+        android:text="@string/contact"
         android:fontFamily="@font/aclonica"
         android:textColor="@color/dark_yellow"
         android:textSize="18dp"
@@ -73,39 +73,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Data -->
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="300dp"
-        android:layout_height="75dp"
+    <ImageView
+        android:id="@+id/code"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         android:layout_marginTop="400dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/date"
-        android:fontFamily="@font/aclonica"
-        android:textColor="@color/dark_yellow"
-        android:textSize="18dp"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <!--Sviluppatore -->
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="300dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="500dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/name"
-        android:fontFamily="@font/aclonica"
-        android:textColor="@color/dark_yellow"
-        android:textSize="18dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/qrcode"
         />
 
     <!--Button Back -->

@@ -27,7 +27,8 @@
             android:exported="false" />
         <activity
             android:name=".ScoreActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/PopupTheme"/>
         <activity
             android:name=".SettingActivity"
             android:exported="false" />
@@ -36,7 +37,8 @@
             android:exported="false" />
         <activity
             android:name=".RulesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/PopupTheme"/>
         <activity
             android:name=".HomeGameActivity"
             android:exported="false" />

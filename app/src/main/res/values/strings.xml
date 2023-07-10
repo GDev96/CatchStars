@@ -31,10 +31,8 @@
     <string name="astronaut"> Astronaut: </string>
     <string name="prompt_confirm">Conferma password</string>
     <string name="info">Curiosità sulla stazione spaziale!</string>
-    <string name="title">Titolo progetto: CatchStars!</string>
-    <string name="version">Versione: 1.0</string>
-    <string name="date">Data di rilascio: 06/2023</string>
-    <string name="name">Sviluppatore: Frattini Gaia - mt. 736610</string>
+    <string name="title">Titolo progetto: CatchStars!\nVersione: 1.0\nData di rilascio:07/2023\nSviluppato da: Frattini Gaia - MT.736610</string>
+    <string name="contact">Per domande o segnalazioni\ninquadra il codice QR</string>
     <string name="question">Hai delle domande?</string>
     <string name="question_1">1. Quanti punti vale una stella gialla?</string>
     <string name="answer_1">Il valore delle stelle gialle dipende dalla distanza che l\'astronauta deve percorrere per raggiungerla. La somma totale del loro valore è 100 punti. La stella più lontana vale 50 punti.</string>
@@ -54,5 +52,6 @@
     <string name="rule6">Buona fortuna astronauta!</string>
     <string name="title_activity_maps">activity_maps</string>
     <string name="title_activity_maps_current_place">MapsActivityCurrentPlace</string>
+    <string name="home">Home</string>
 
 </resources>

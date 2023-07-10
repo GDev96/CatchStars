@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     //val user = auth.currentUser
-                    Toast.makeText(applicationContext, "Benvenuto a bordo!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Benvenuto a bordo!", Toast.LENGTH_SHORT).show()
                     val goHomeG = Intent(this@LoginActivity, HomeGameActivity::class.java)
                     startActivity(goHomeG)
                     //goHomeGame()//(user)
@@ -79,10 +79,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
-    /* private fun goHomeGame(){ //(user:FirebaseUser?)
-        val goHomeG = Intent(this@LoginActivity, HomeGameActivity::class.java)
-        startActivity(goHomeG)
-    }*/
 
 }
