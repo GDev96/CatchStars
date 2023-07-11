@@ -53,5 +53,8 @@
     <string name="title_activity_maps">activity_maps</string>
     <string name="title_activity_maps_current_place">MapsActivityCurrentPlace</string>
     <string name="home">Home</string>
+    <string name="data">Data</string>
+    <string name="punti">Punti</string>
+    <string name="tempo">Tempo</string>
 
 </resources>

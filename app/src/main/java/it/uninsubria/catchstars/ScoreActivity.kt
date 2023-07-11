@@ -3,15 +3,20 @@ package it.uninsubria.catchstars
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import it.uninsubria.catchstars.data.model.Astronauta
 import it.uninsubria.catchstars.database.DataBaseHelper
 import java.sql.Time
@@ -19,6 +24,7 @@ import java.sql.Time
 
 class ScoreActivity : AppCompatActivity() {
 
+    private lateinit var ScrollView: ScrollView
     private lateinit var TableScore: TableLayout
     private lateinit var LevelRow: TableRow
     private lateinit var DataLevel: TextView
@@ -40,6 +46,7 @@ class ScoreActivity : AppCompatActivity() {
         window.attributes = layoutParams
         setContentView(R.layout.score)
 
+        ScrollView = findViewById(R.id.scrollable)
         TableScore = findViewById(R.id.scoreTable)
         LevelRow = findViewById(R.id.row)
         DataLevel = findViewById(R.id.data)
@@ -51,14 +58,10 @@ class ScoreActivity : AppCompatActivity() {
         database = DataBaseHelper(this)
         db = database.writableDatabase
 
-        //todo popolamento tabella: data - pt - time
         //recupera dati da database e li stampa nella tabella
         val cursor = db.rawQuery("SELECT * FROM Points", null)
 
-        Toast.makeText(this, "Pre-if", Toast.LENGTH_SHORT).show() //todo messaggi di controllo - da eliminare
-
         if (cursor.moveToFirst()) {
-            Toast.makeText(this, "If-Pre-do", Toast.LENGTH_SHORT).show() //todo messaggi di controllo - da eliminare
             do {
                 val columnDate = cursor.getColumnIndex("DateLevel")
                 val columnPoint = cursor.getColumnIndex("PointLevel")
@@ -67,11 +70,11 @@ class ScoreActivity : AppCompatActivity() {
                 //controlla la validità degli indici
                 if (columnDate != -1 && columnPoint != -1 && columnTime != -1) {
 
-                    Toast.makeText(this, "Indici validi", Toast.LENGTH_SHORT).show() //todo messaggi di controllo - da eliminare
-
                     val date = cursor.getString(columnDate)
                     val points = cursor.getInt(columnPoint)
                     val time = cursor.getString(columnTime)
+
+                    val font = ResourcesCompat.getFont(this, R.font.aclonica_regular)
 
                     LevelRow = TableRow(this)
                     val values = TableRow.LayoutParams(
@@ -80,20 +83,33 @@ class ScoreActivity : AppCompatActivity() {
                     )
                     LevelRow.layoutParams = values
 
-                    //padding textview
-                    values.setMargins(3,3,3,3)
-
-                    //inserimento dei valori nelle celle della tabella
+                    //inserimento dei valori nelle celle della tabella con stampa personalizzata
                     DataLevel = TextView(this)
                     DataLevel.text = date
-                    LevelRow.addView(DataLevel)
+                    DataLevel.gravity = Gravity.CENTER
+                    DataLevel.typeface = font
+                    DataLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+                    DataLevel.setTextColor(Color.parseColor("#D7FCEF80"))
+                    DataLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     PointLevel = TextView(this)
                     PointLevel.text = points.toString()
-                    LevelRow.addView(PointLevel)
+                    PointLevel.gravity = Gravity.CENTER
+                    PointLevel.typeface = font
+                    PointLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+                    PointLevel.setTextColor(Color.parseColor("#D7FCEF80"))
+                    PointLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     TimeLevel = TextView(this)
                     TimeLevel.text = time
+                    TimeLevel.gravity = Gravity.CENTER
+                    TimeLevel.typeface = font
+                    TimeLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+                    TimeLevel.setTextColor(Color.parseColor("#D7FCEF80"))
+                    TimeLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+
+                    LevelRow.addView(DataLevel)
+                    LevelRow.addView(PointLevel)
                     LevelRow.addView(TimeLevel)
 
                     TableScore.addView(LevelRow)
@@ -101,7 +117,6 @@ class ScoreActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Errore nella lettura dei dati", Toast.LENGTH_SHORT).show()
                 }
-
             } while (cursor.moveToNext())
 
             cursor.close()
