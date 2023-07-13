@@ -89,28 +89,31 @@ class ScoreActivity : AppCompatActivity() {
                     DataLevel.gravity = Gravity.CENTER
                     DataLevel.typeface = font
                     DataLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-                    DataLevel.setTextColor(Color.parseColor("#D7FCEF80"))
-                    DataLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+                    DataLevel.setTextColor(Color.parseColor("#BE1922"))
+                    //DataLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     PointLevel = TextView(this)
                     PointLevel.text = points.toString()
                     PointLevel.gravity = Gravity.CENTER
                     PointLevel.typeface = font
                     PointLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-                    PointLevel.setTextColor(Color.parseColor("#D7FCEF80"))
-                    PointLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+                    PointLevel.setTextColor(Color.parseColor("#BE1922"))
+                    //PointLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     TimeLevel = TextView(this)
                     TimeLevel.text = time
                     TimeLevel.gravity = Gravity.CENTER
                     TimeLevel.typeface = font
                     TimeLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-                    TimeLevel.setTextColor(Color.parseColor("#D7FCEF80"))
-                    TimeLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+                    TimeLevel.setTextColor(Color.parseColor("#BE1922"))
+                    //TimeLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
+                    //stampa su tre righe diverse
                     LevelRow.addView(DataLevel)
                     LevelRow.addView(PointLevel)
                     LevelRow.addView(TimeLevel)
+                    LevelRow.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+                    //todo da testare se stampa sulla stessa riga
 
                     TableScore.addView(LevelRow)
 
@@ -132,5 +135,5 @@ class ScoreActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }
+

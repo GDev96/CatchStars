@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.SystemClock
 import android.widget.Chronometer
@@ -38,45 +39,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var HomeGameButton: ImageButton
     private lateinit var ScoreButton: ImageButton
 
-    private val entrance = LatLng(45.798328, 8.847318)
-    private val church = LatLng(45.798281, 8.849082)
-    private val dorm = LatLng(45.796906, 8.851511)
-    private val mtg = LatLng(45.797838, 8.852398)
-    private val cus = LatLng(45.796946, 8.853696)
-    private val magnolia = LatLng(45.824752, 8.850037)
-    private val pilastro = LatLng(45.825777, 8.849119)
-    private val faggio = LatLng(45.825531, 8.849522)
-    private val parco = LatLng(45.824133, 8.850831)
-    private val campo = LatLng(45.820610, 8.853626)
-    private val golf = LatLng(45.817590, 8.858858)
-    private val bosco = LatLng(45.817503, 8.857845)
-
-    private var markerEntrance: Marker? = null
-    private var markerChurch: Marker? = null
-    private var markerDorm: Marker? = null
-    private var markerMTG: Marker? = null
-    private var markerCUS: Marker? = null
-    private var markerMagnolia: Marker? = null
-    private var markerPilastro: Marker? = null
-    private var markerFaggio: Marker? = null
-    private var markerParco: Marker? = null
-    private var markerCampo: Marker? = null
-    private var markerGolf: Marker? = null
-    private var markerBosco: Marker? = null
-
-    //private var userMarker: Marker? = null
-
-    //punteggi stelle
-    private val ptStar1 = 5
-    private val ptStar2 = 10
-    private val ptStar3 = 15
-    private val ptStar4 = 20
-    private val ptStar5 = 25
-
-    private val pil = 60
-    private val fag = 40
-    private val mag = 100
-
     private lateinit var Map: GoogleMap
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val permissionCode = 101
@@ -84,6 +46,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private var ptTot = 0
     private var currentProgress = 0
+    val ptStar = 100
 
     lateinit var db: DataBaseHelper
 
@@ -106,6 +69,8 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         db = DataBaseHelper(this)
 
         Time.setTypeface(ResourcesCompat.getFont(this, R.font.aclonica)); //font cronometro
+        //todo impostare il tempo di inizio a 15 minuti - 900 secondi
+
         Time.start()
 
         //inserimento posizione utente nella mappa e geolocalizzazione
@@ -142,8 +107,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //regolazione dello zoom della mappa
         Map.setMaxZoomPreference(20.0f)
         Map.setMinZoomPreference(12.0f)
-
-        //todo sostituire i marker fissi con 10 marker con posizioni casuali senza punteggio assegnato
 
         getCurrentLocationUser()
 
@@ -185,52 +148,21 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             }
         }
 
-            /*
-        //visualizzazione indicatori
-        markerEntrance = Map.addMarker(
+
+        //indicatore di test
+        val markerTest: Marker?
+        val test = LatLng(45.824783, 8.850184)
+
+        markerTest = Map.addMarker(
             MarkerOptions()
-                .position(entrance)
+                .position(test)
                 .title("30 pt")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(entrance))
-        markerEntrance?.tag = ptStar5//30 punti
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(test))
+        markerTest?.tag = ptStar//100 punti
 
-        markerChurch = Map.addMarker(
-            MarkerOptions()
-                .position(church)
-                .title("25 pt")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(church))
-        markerChurch?.tag = ptStar4 //25 punti
-
-        markerDorm = Map.addMarker(
-            MarkerOptions()
-                .position(dorm)
-                .title("15 pt")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dorm))
-        markerDorm?.tag = ptStar2//15 punti
-
-        markerMTG = Map.addMarker(
-            MarkerOptions()
-                .position(mtg)
-                .title("10 pt")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(mtg))
-        markerMTG?.tag = ptStar1 //10 punti
-
-        markerCUS = Map.addMarker(
-            MarkerOptions()
-                .position(cus)
-                .title("20 pt")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(cus))
-        markerCUS?.tag = ptStar3 //20 punti
-
-       */
-            Map.setOnMarkerClickListener(this)
+        Map.setOnMarkerClickListener(this)
     }
-
 
     // Funzione per calcolare le coordinate casuali
     private fun calculateLatLng(user: LatLng, distance: Double, angle: Double): LatLng {
@@ -317,17 +249,17 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 // Calcola la distanza tra il marker e la posizione utente
                 val distance = calculateDistance(starLocation, userLocation)
 
-                if (distance < 5) {
+                if (distance < 10) {
 
                     //val ptStar = marker.tag as? Int //acquisisce il valore del tag
                     //if (ptStar != null) {
-                        //ptTot += ptStar //somma il valore del tag al punteggio
-                        ptTot += 10 //in caso di stelline casuali
+                        ptTot += ptStar //somma il valore del tag al punteggio
+                        ptTot += 12 //in caso di stelline casuali
 
                         marker.isVisible = false // nasconde la stellina
 
                         //Incremento progress bar
-                        currentProgress += 10
+                        currentProgress += 12
                         ProgressBar.progress = currentProgress
                         ProgressBar.max = 100 //valore massimo della progress bar
 
@@ -344,8 +276,8 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 }
            }
 
-        //al raggiungimento dei 100 punti chiama il metodo per terminare il livello
-        if(ptTot == 100) {
+        //al raggiungimento dei 100 punti o allo scattare dei 15 minuti chiama il metodo per terminare il livello
+        if(ptTot >= 100) { //todo or per fine tempo countdown
             levelEnded()
         }
 

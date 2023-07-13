@@ -56,7 +56,7 @@
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="115dp"
-        android:countDown="false"
+        android:countDown="true"
         android:fontFamily="@font/aclonica"
         android:textAlignment="center"
         android:textColor="@color/dark_yellow"

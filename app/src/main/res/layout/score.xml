@@ -18,7 +18,7 @@
         android:text="@string/score"
         android:textSize="22sp"
         android:textAlignment="center"
-        android:textColor="#D7FCEF80"
+        android:textColor="@color/red"
         />
 
     <TableRow
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:padding="3dp"
             android:text="@string/data"
-            android:textColor="#FDAD6F"
+            android:textColor="@color/light_orange"
             android:textSize="16sp" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:padding="3dp"
             android:text="@string/punti"
-            android:textColor="#FDAD6F"
+            android:textColor="@color/light_orange"
             android:textSize="16sp" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:padding="3dp"
             android:text="@string/tempo"
-            android:textColor="#FDAD6F"
+            android:textColor="@color/light_orange"
             android:textSize="16sp" />
 
     </TableRow>
@@ -81,7 +81,7 @@
             android:fontFamily="@font/aclonica"
             android:padding="15dp"
             android:stretchColumns="*"
-            android:textColor="#D7FCEF80">
+            android:textColor="@color/red">
 
 
         </TableLayout>
@@ -94,7 +94,7 @@
         android:background="@drawable/buttonscore_layout"
         android:scaleType="@null"
         android:text="@string/home"
-        android:textColor="#FDAD6F"
+        android:textColor="@color/light_orange"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:layout_alignParentBottom="true"

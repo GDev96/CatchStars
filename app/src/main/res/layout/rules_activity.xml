@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/rule1"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="470dp"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center_horizontal|center_vertical"
@@ -34,76 +34,6 @@
         android:textAlignment="center"
         android:textColor="@color/red"
         android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/rule2"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="150dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:text="@string/rule2"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/rule3"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="250dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:text="@string/rule3"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/rule4"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="320dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:text="@string/rule4"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/rule5"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="360dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:text="@string/rule5"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/rule6"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="480dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:text="@string/rule6"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
         />
 
     <ImageButton
@@ -121,7 +51,7 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="500dp"
-        android:layout_marginStart="170dp"
+        android:layout_marginStart="190dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/partenza1"
         />
