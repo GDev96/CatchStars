@@ -20,7 +20,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAvpHja3j_fknUwWLD2dYdelfWpW_EpAIQ"
+          "current_key":${{secrets.API_Key_G}}
         }
       ],
       "services": {

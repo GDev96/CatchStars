@@ -69,8 +69,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         db = DataBaseHelper(this)
 
         Time.setTypeface(ResourcesCompat.getFont(this, R.font.aclonica)); //font cronometro
-        //todo impostare il tempo di inizio a 15 minuti - 900 secondi
-
         Time.start()
 
         //inserimento posizione utente nella mappa e geolocalizzazione
@@ -276,8 +274,8 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 }
            }
 
-        //al raggiungimento dei 100 punti o allo scattare dei 15 minuti chiama il metodo per terminare il livello
-        if(ptTot >= 100) { //todo or per fine tempo countdown
+        //al raggiungimento dei 100 punti
+        if(ptTot >= 100) {
             levelEnded()
         }
 
