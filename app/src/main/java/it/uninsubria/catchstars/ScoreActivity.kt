@@ -90,7 +90,6 @@ class ScoreActivity : AppCompatActivity() {
                     DataLevel.typeface = font
                     DataLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     DataLevel.setTextColor(Color.parseColor("#BE1922"))
-                    //DataLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     PointLevel = TextView(this)
                     PointLevel.text = points.toString()
@@ -98,7 +97,6 @@ class ScoreActivity : AppCompatActivity() {
                     PointLevel.typeface = font
                     PointLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     PointLevel.setTextColor(Color.parseColor("#BE1922"))
-                    //PointLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     TimeLevel = TextView(this)
                     TimeLevel.text = time
@@ -106,14 +104,11 @@ class ScoreActivity : AppCompatActivity() {
                     TimeLevel.typeface = font
                     TimeLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     TimeLevel.setTextColor(Color.parseColor("#BE1922"))
-                    //TimeLevel.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
-                    //stampa su tre righe diverse
                     LevelRow.addView(DataLevel)
                     LevelRow.addView(PointLevel)
                     LevelRow.addView(TimeLevel)
-                    LevelRow.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-                    //todo da testare se stampa sulla stessa riga
+                    //LevelRow.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
                     TableScore.addView(LevelRow)
 

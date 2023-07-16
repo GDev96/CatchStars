@@ -5,14 +5,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.os.SystemClock
+import android.os.*
+import android.view.View
+import android.view.WindowInsets
 import android.widget.Chronometer
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
@@ -24,10 +24,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.maps.model.LatLng
 import it.uninsubria.catchstars.database.DataBaseHelper
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,10 +42,10 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private var ptTot = 0
     private var currentProgress = 0
-    val ptStar = 100
 
     lateinit var db: DataBaseHelper
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -59,6 +55,9 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         SettingButton = findViewById(R.id.setting)
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
+
+        //nasconde la barra di navigazione
+        window.insetsController?.hide(WindowInsets.Type.navigationBars())
 
         //creazione della mappa
         val mapFragment = supportFragmentManager
@@ -76,12 +75,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         ProgressBar.setProgress(currentProgress)//imposta il valore iniziale della progressbar
 
-        //salvataggio della data nel database
-        val dataSystem = Calendar.getInstance().time //recupera la data dal sistema
-        val data = SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(dataSystem)
-
-        db.saveDate(data)
-
         SettingButton.setOnClickListener{
             val intent = Intent(this@GameActivity, SettingActivity::class.java)
             startActivity(intent)
@@ -97,7 +90,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    //add marker stars e posizione utente statica
+    //aggiunta stelline
     override fun onMapReady(googleMap: GoogleMap) {
 
         Map = googleMap
@@ -145,20 +138,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 Toast.makeText(this, "Posizione non trovata", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-        //indicatore di test
-        val markerTest: Marker?
-        val test = LatLng(45.824783, 8.850184)
-
-        markerTest = Map.addMarker(
-            MarkerOptions()
-                .position(test)
-                .title("30 pt")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.star_icon40)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(test))
-        markerTest?.tag = ptStar//100 punti
-
         Map.setOnMarkerClickListener(this)
     }
 
@@ -176,7 +155,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         return LatLng(Math.toDegrees(lat2), Math.toDegrees(lng2))
     }
-
 
     //geolocalizzazione in tempo reale
     private fun getCurrentLocationUser() {
@@ -222,7 +200,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    // Funzione per calcolare la distanza tra due posizioni LatLng
+    //metodo per calcolare la distanza tra due posizioni LatLng
     private fun calculateDistance(user: LatLng, star: LatLng): Float {
         val results = FloatArray(1)
         Location.distanceBetween(
@@ -235,7 +213,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     //markerClick
     override fun onMarkerClick(marker: Marker): Boolean {
-
             //aggiorna la posizione dell'utente
             getCurrentLocationUser()
 
@@ -247,44 +224,33 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 // Calcola la distanza tra il marker e la posizione utente
                 val distance = calculateDistance(starLocation, userLocation)
 
-                if (distance < 10) {
-
-                    //val ptStar = marker.tag as? Int //acquisisce il valore del tag
-                    //if (ptStar != null) {
-                        ptTot += ptStar //somma il valore del tag al punteggio
-                        ptTot += 12 //in caso di stelline casuali
+                if (distance <= 20) {
+                        ptTot += 14
 
                         marker.isVisible = false // nasconde la stellina
 
                         //Incremento progress bar
-                        currentProgress += 12
+                        currentProgress += 14
                         ProgressBar.progress = currentProgress
                         ProgressBar.max = 100 //valore massimo della progress bar
 
-
                         val longMessCongrat = "Hai catturato una stella! \nIl tuo punteggio è: $ptTot"
                         Toast.makeText(this, longMessCongrat, Toast.LENGTH_SHORT).show()
-                    /*} else {
-                        Toast.makeText(this, "Ops, cattura non riuscita. Riprova!", Toast.LENGTH_SHORT).show()
-                    }*/
                 } else {
                     val missingDistance = distance.toInt()
                     val longMessDistance = "Ti mancano $missingDistance metri alla stellina!"
                     Toast.makeText(this, longMessDistance, Toast.LENGTH_SHORT).show()
                 }
            }
-
         //al raggiungimento dei 100 punti
         if(ptTot >= 100) {
             levelEnded()
         }
-
         return true
     }
 
     //metodo fine livello
     fun levelEnded(){
-
         Time.stop() //ferma il cronometro
 
         // Conversione dei minuti in secondi
@@ -293,9 +259,22 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         // Calcolo finale punti
         val finalPt = totalPoint(timeInSecond)
 
+        //salvataggio della data nel database
+        val dataSystem = Calendar.getInstance().time //recupera la data dal sistema
+        val data = SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(dataSystem)
+
         //salvataggio dei punti nel database
         val point = finalPt
-        db.savePoint(point)
+
+        //salvataggio del tempo nel database
+        val timeInMillis = SystemClock.elapsedRealtime() - Time.base
+        val timeInSec = timeInMillis/1000
+        val timeInMinute = timeInSec.toDouble()
+        val min = (timeInMinute / 60).toInt()
+        val sec = (timeInMinute % 60).toInt()
+        val time = String.format("%02d:%02d", min, sec)
+
+        db.savePoint(data, point, time)
 
         //apertura schermata di fine livello
         val intent = Intent(this@GameActivity, LevelEnded::class.java)
@@ -308,14 +287,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         val timeInMillis = SystemClock.elapsedRealtime() - Time.base
         val timeInSecond = timeInMillis/1000
-        val timeInMinute = timeInSecond.toDouble()
-
-        val min = (timeInMinute / 60).toInt()
-        val sec = (timeInMinute % 60).toInt()
-        val formatTime = String.format("%02d:%02d", min, sec)
-
-        //salvataggio del tempo nel database
-        db.saveTime(formatTime)
 
         return timeInSecond.toInt()
     }
@@ -329,7 +300,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             val plusTime = timeInSecond - 600 //10min in secondi
             finalPt = ptTot - (plusTime / 30)
         }
-
         return finalPt
     }
 
@@ -342,7 +312,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             val intent = Intent(this@GameActivity, HomeGameActivity::class.java)
             startActivity(intent)
         }
-
         builder.setNegativeButton("Continua la missione", null)
 
         val dialog = builder.create()

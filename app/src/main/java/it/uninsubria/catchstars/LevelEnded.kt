@@ -33,7 +33,7 @@ class LevelEnded : AppCompatActivity() {
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
 
-        //riceve come parametro il risultato del calcolo punti
+        //riceve il risultato del calcolo punti
         val finalPt = intent.getIntExtra("Punteggio finale:", defaultPt)
         val Score = ScoreView
         Score.text = finalPt.toString() //stampa il valore del punteggio calcolato

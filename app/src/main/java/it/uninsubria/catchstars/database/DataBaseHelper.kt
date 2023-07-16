@@ -27,37 +27,18 @@ class DataBaseHelper (var context: Context) :  SQLiteOpenHelper(context, DATABAS
         onCreate(db)
     }
 
-    //salva i dati: data, punti e tempo dall'activity di gioco
-    fun saveDate(date: String?){
-        val database = writableDatabase
-
-        val values = ContentValues()
-        values.put("DateLevel", date)
-
-        database.insert("Points", null, values)
-        database.close()
-    }
-
-    fun savePoint(point: Int?){
+    //metodo per la raccolta dei dati
+    fun savePoint(date: String?, point: Int?, time: String?){
         val database = writableDatabase
 
         val values = ContentValues()
         values.put("PointLevel", point)
-
-        database.insert("Points", null, values)
-        database.close()
-    }
-
-    fun saveTime(time: String?){
-        val database = writableDatabase
-
-        val values = ContentValues()
+        values.put("DateLevel", date)
         values.put("TimeLevel", time)
 
         database.insert("Points", null, values)
         database.close()
     }
-
 }
 
 

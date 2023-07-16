@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/rules"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
-    android:layout_height="700dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="600dp"
     android:background="@drawable/popup_layout"
-    >
+    tools:context=".RulesActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/title"
@@ -14,12 +16,15 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:text="@string/rules"
         android:textAlignment="center"
         android:textColor="@color/red"
-        android:textSize="26sp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
         />
 
     <TextView
@@ -28,32 +33,37 @@
         android:layout_height="470dp"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/aclonica"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:text="@string/rule1"
         android:textAlignment="center"
         android:textColor="@color/red"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <ImageButton
         android:id="@+id/Ann_miss"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginStart="20dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="480dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/annulla1"
-        />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/Partenza"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginStart="190dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="480dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/partenza1"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

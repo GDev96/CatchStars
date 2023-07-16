@@ -20,14 +20,12 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
 
-        //associazione variabili
         MusicOnButton = findViewById(R.id.musicOn_button)
         MusicOffButton = findViewById(R.id.musicOff_button)
         InfoButton = findViewById(R.id.info_button)
         FAQButton = findViewById(R.id.faq_button)
         BackButton = findViewById(R.id.back_button)
 
-        //tasti musica -> gestione musica in background
         // attivazione service musica in background
         MusicOnButton.setOnClickListener{
             Toast.makeText(this, "Music: Start", Toast.LENGTH_SHORT).show()
@@ -59,9 +57,6 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this@SettingActivity, HomeGameActivity::class.java)
             startActivity(intent)
         }
-
-
     }
-
 }
 
