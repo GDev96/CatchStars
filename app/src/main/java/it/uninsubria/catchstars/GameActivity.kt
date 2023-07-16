@@ -56,9 +56,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         HomeGameButton = findViewById(R.id.home_back)
         ScoreButton = findViewById(R.id.score)
 
-        //nasconde la barra di navigazione
-        window.insetsController?.hide(WindowInsets.Type.navigationBars())
-
         //creazione della mappa
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
