@@ -5,6 +5,11 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+// Carica secrets.properties per ottenere la chiave
+def secretsPropertiesFile = rootProject.file("secrets.properties")
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+
 android {
     namespace 'it.uninsubria.catchstars'
     compileSdk 33
@@ -18,10 +23,11 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
-    dependencies {
-        implementation "com.google.android.material:material:1.9.0"
+        // Passa la chiave direttamente da secrets.properties al Manifest
+        manifestPlaceholders = [
+                API_KEY_MAPS: "${secretsProperties['MAPS_API_KEY']}"
+        ]
     }
 
     buildTypes {
@@ -30,6 +36,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Aggiungi la chiave API a BuildConfig per usarla nel codice, se necessario
+    buildTypes.each {
+        it.buildConfigField 'String', 'API_KEY_MAPS', "\"${secretsProperties['MAPS_API_KEY']}\""
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -70,8 +82,7 @@ dependencies {
     //dipendenze google maps
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
-    
+
     //dipendenza SQLite
     implementation "androidx.sqlite:sqlite:2.3.1"
-
 }
